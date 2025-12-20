@@ -1,0 +1,46 @@
+:root {
+  --gryffindor-red: #ff0004;
+  --gryffindor-gold: #d3a625;
+  --slytherin-green: #4BAD00;
+  --slytherin-silver: #5d5d5d;
+  --ravenclaw-blue: #002bba;
+  --ravenclaw-bronze: #946b2d;
+  --hufflepuff-yellow: #ffdb00;
+  --hufflepuff-black: #000000;
+  --dark-bg: #0a0a0a;
+  --light-text: #f0f0f0;
+  --parchment: #f5e8c8;
+  --golden-snitch: #ffd700;
+  --diviser-section: #7F0909;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+body {
+  background-color: var(--dark-bg);
+  color: var(--light-text);
+  background-image: radial-gradient(
+      circle at 15% 50%,
+      rgba(26, 71, 42, 0.1) 0%,
+      transparent 20%
+    ),
+    radial-gradient(circle at 85% 30%, rgba(116, 0, 1, 0.1) 0%, transparent 20%),
+    radial-gradient(
+      circle at 50% 80%,
+      rgba(14, 26, 64, 0.1) 0%,
+      transparent 20%
+    );
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}

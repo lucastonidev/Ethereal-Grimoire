@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ethereal Grimoire - O Mundo Mágico de Harry Potter</title>
+    <!-- Meta Tags -->
+    <meta
+      name="description"
+      content="Explore o mundo mágico de Harry Potter: casas de Hogwarts, personagens, feitiços e curiosidades. Projeto desenvolvido para fãs da série."
+    />
+
+    <meta property="og:title" content="Harry Potter - O Mundo Mágico" />
+    <meta
+      property="og:description"
+      content="Explore o mundo mágico de Harry Potter: casas de Hogwarts, personagens, feitiços e curiosidades. Projeto desenvolvido para fãs da série."
+    />
+    <meta property="og:image" content="./assets/img/og-image.jpg" />
+    <meta property="og:url" content="https://github.com/lucastonidev/" />
+    <meta property="og:type" content="website" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./assets/img/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="./assets/img/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="./assets/img/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/img/favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Ethereal" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <!-- CSS e Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <!-- Header e Navegação -->
+    <header>
+      <div class="container">
+        <nav class="navbar">
+          <div class="nav-items">
+            <a href="#" class="logo">
+              <i class="fas fa-hat-wizard"></i>
+              Ethereal Grimoire
+            </a>
+            <button class="mobile-menu-btn">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+
+          <ul class="nav-links">
+            <li>
+              <a href="#home"> Home </a>
+            </li>
+            <li>
+              <a href="#houses">
+                Casas
+                <i class="fa-solid fa-house gryffindor"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#characters">
+                Personagens
+                <i class="fa-solid fa-house slytherin"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#spells">
+                Feitiços
+                <i class="fa-solid fa-house ravenclaw"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#about">
+                Sobre
+                <i class="fa-solid fa-house hufflepuff"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="container">
+        <h1 class="floating">Bem-vindo ao Mundo Mágico</h1>
+        <p>
+          Explore o universo de Harry Potter, descubra as casas de Hogwarts,
+          conheça os personagens memoráveis e aprenda feitiços icônicos. O mundo
+          bruxo nunca esteve tão perto!
+        </p>
+        <a href="#houses" class="cta-button">Explorar Casas</a>
+      </div>
+    </section>
+
+    <!-- Casas de Hogwarts -->
+    <section id="houses">
+      <div class="container">
+        <h2 class="section-title">Casas de Hogwarts</h2>
+        <div class="houses">
+          <div class="houses-grid">
+            <!-- Grifinória -->
+            <div class="house-card gryffindor">
+              <div class="house-icon">
+                <img src="./assets/img/gryffindor.png" alt="Grifinória" />
+              </div>
+              <h3>Grifinória</h3>
+              <p>
+                Valentia, ousadia e sangue-frio. Fundada por Godric Gryffindor,
+                a casa valoriza coragem e nobreza. Seu animal símbolo é o leão e
+                suas cores são escarlate e ouro.
+              </p>
+            </div>
+
+            <!-- Sonserina -->
+            <div class="house-card slytherin">
+              <div class="house-icon">
+                <img src="./assets/img/slytherin.png" alt="Sonserina" />
+              </div>
+              <h3>Sonserina</h3>
+              <p>
+                Ambição, astúcia e determinação. Fundada por Salazar Slytherin,
+                a casa valoriza aqueles com sangue puro e grande ambição. Seu
+                animal símbolo é a serpente.
+              </p>
+            </div>
+
+            <!-- Corvinal -->
+            <div class="house-card ravenclaw">
+              <div class="house-icon">
+                <img src="./assets/img/ravenclaw.png" alt="Corvinal" />
+              </div>
+              <h3>Corvinal</h3>
+              <p>
+                Inteligência, criatividade e sabedoria. Fundada por Rowena
+                Ravenclaw, a casa valoriza o conhecimento acima de tudo. Seu
+                animal símbolo é a águia.
+              </p>
+            </div>
+
+            <!-- Lufa-Lufa -->
+            <div class="house-card hufflepuff">
+              <div class="house-icon">
+                <img src="./assets/img/hufflepuff.png" alt="Lufa-Lufa" />
+              </div>
+              <h3>Lufa-Lufa</h3>
+              <p>
+                Lealdade, paciência e justiça. Fundada por Helga Hufflepuff, a
+                casa valoriza o trabalho árduo e a dedicação. Seu animal símbolo
+                é o texugo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Personagens -->
+    <section id="characters">
+      <div class="container">
+        <h2 class="section-title">Personagens Principais</h2>
+        <div class="characters-slider">
+          <button class="slider-btn prev">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div class="slider-container" id="main-character"></div>
+          <button class="slider-btn next">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feitiços -->
+    <section id="spells" class="spells-section">
+      <div class="container">
+        <h2 class="section-title">Feitiços e Encantamentos</h2>
+        <div class="spells-grid"></div>
+        <div class="load-more-container">
+          <button id="loadMoreBtn" class="load-more-btn">Carregar Mais</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="about">
+      <div class="container">
+        <div class="footer-container">
+          <div class="footer-column">
+            <h3>Sobre Este Projeto</h3>
+            <p>
+              Este site é uma homenagem ao universo mágico de Harry Potter,
+              criado para fãs explorarem as casas, personagens e feitiços da
+              série.
+            </p>
+            <p>
+              Desenvolvido por Lucas Toniato como parte de um projeto pessoal e
+              uso da api do
+              <a
+                style="color: aliceblue"
+                href="https://github.com/fedeperin/potterapi/tree/main"
+                >PotterApi</a
+              >
+            </p>
+          </div>
+          <div class="footer-column acess-link">
+            <h3>Link rapido</h3>
+            <ul>
+              <li><a href="#home">Início</a></li>
+              <li><a href="#houses">Casas</a></li>
+              <li><a href="#characters">Personagens</a></li>
+              <li><a href="#spells">Feitiços</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Contato</h3>
+            <div class="social-media">
+              <a
+                href="https://github.com/lucastonidev"
+                target="_blank"
+                rel="noopener"
+              >
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.instagram.com/lucastoni0101/">
+                <i class="fab fa-instagram" target="_blank" rel="noopener"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          &copy; 2025 Harry Potter - O Mundo Mágico. Todos os direitos
+          reservados.
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
+</html>

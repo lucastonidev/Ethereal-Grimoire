@@ -1,0 +1,142 @@
+header {
+    background-color: rgba(10, 10, 10, 0.95);
+    border-bottom: 2px solid var(--gryffindor-gold);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gryffindor-gold);
+    text-decoration: none;
+}
+
+.logo i {
+    margin-right: 10px;
+    font-size: 2.2rem;
+    color: var(--gryffindor-red);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 30px;
+}
+
+.nav-links a {
+    color: var(--light-text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav-links a:hover {
+    color: var(--gryffindor-gold);
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--gryffindor-gold);
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+i.gryffindor {
+    color: var(--gryffindor-red);
+}
+
+i.slytherin {
+    color: var(--slytherin-green);
+}
+
+i.ravenclaw {
+    color: var(--ravenclaw-blue);
+}
+
+i.hufflepuff {
+    color: var(--hufflepuff-yellow);
+}
+
+.mobile-menu-btn {
+    display: none;
+    font-size: 1.8rem;
+    color: var(--light-text);
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-items {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 90%;
+        height: 0;
+        transition: height 0.3s ease;
+        overflow: hidden;
+    }
+
+    .nav-links.active {
+        height: auto;
+        margin-bottom: 16px;
+    }
+
+    .nav-links li {
+        border-top: 2px solid var(--gryffindor-gold);
+        padding-block: 8px;
+        width: 100%;
+    }
+
+    .nav-links li:last-child {
+        border-bottom: 2px solid var(--gryffindor-gold);
+    }
+
+    .mobile-menu-btn {
+        display: block;
+        background: none;
+        border: none;
+        color: var(--gryffindor-gold);
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+}

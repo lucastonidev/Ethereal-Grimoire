@@ -1,0 +1,718 @@
+/* ══════════════════════════════════════════
+   Art direction: Harry Potter — noite em Hogwarts
+   Palette: azul-noturno profundo + dourado mágico
+   Display: Cinzel (medieval, elegante)
+   Body:    Nunito (legível, moderno)
+   ══════════════════════════════════════════ */
+
+@import url('./reset.css');
+@import url('./components/header.css');
+@import url('./components/footer.css');
+
+/* ── TOKENS ── */
+:root {
+  /* Paleta Harry Potter */
+  --bg:               #09090f;
+  --bg-section:       #0d0e1a;
+  --bg-card:          #12131f;
+  --bg-card-hover:    #181928;
+  --border:           rgba(201,162,39,.15);
+  --border-subtle:    rgba(255,255,255,.06);
+
+  /* Texto */
+  --text:             #f0eadc;
+  --text-muted:       #9b9490;
+  --text-faint:       #5a5760;
+
+  /* Dourado principal */
+  --gold:             #c9a227;
+  --gold-light:       #e8c84a;
+  --gold-dim:         rgba(201,162,39,.18);
+
+  /* Casas */
+  --gryffindor-red:   #9b1c1c;
+  --gryffindor-gold:  #d4af37;
+  --slytherin-green:  #1a5c2e;
+  --slytherin-silver: #8c9c8e;
+  --ravenclaw-blue:   #1a3a8a;
+  --ravenclaw-bronze: #8b6914;
+  --hufflepuff-yellow:#e8b600;
+  --hufflepuff-black: #2b2b2b;
+
+  /* Tipografia */
+  --font-display: 'Cinzel', Georgia, serif;
+  --font-body:    'Nunito', system-ui, sans-serif;
+
+  /* Escala fluida */
+  --text-xs:   clamp(.75rem,  .7rem  + .25vw, .875rem);
+  --text-sm:   clamp(.875rem, .8rem  + .35vw, 1rem);
+  --text-base: clamp(1rem,    .95rem + .25vw, 1.125rem);
+  --text-lg:   clamp(1.125rem,1rem   + .75vw, 1.5rem);
+  --text-xl:   clamp(1.5rem,  1.2rem + 1.25vw,2.25rem);
+  --text-2xl:  clamp(2rem,    1.2rem + 2.5vw, 3.5rem);
+  --text-3xl:  clamp(2.5rem,  1rem   + 4vw,   5rem);
+
+  /* Espaços */
+  --space-1:  .25rem;  --space-2:  .5rem;  --space-3:  .75rem;
+  --space-4:  1rem;    --space-5:  1.25rem;--space-6:  1.5rem;
+  --space-8:  2rem;    --space-10: 2.5rem; --space-12: 3rem;
+  --space-16: 4rem;    --space-20: 5rem;
+
+  /* Misc */
+  --radius-sm: .375rem; --radius-md: .5rem;
+  --radius-lg: .75rem;  --radius-xl: 1rem;
+  --radius-full: 9999px;
+  --transition: 200ms cubic-bezier(.16,1,.3,1);
+  --content: 1100px;
+}
+
+/* ── BASE ── */
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+.container {
+  max-width: var(--content);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+/* ── BOTÕES ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: .75rem 1.75rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: .05em;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: #1a0a00;
+  box-shadow: 0 0 20px rgba(201,162,39,.35);
+}
+.btn-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-3px);
+  box-shadow: 0 0 32px rgba(201,162,39,.55);
+}
+.btn-primary:active { transform: translateY(-1px); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--gold);
+  border: 1.5px solid var(--gold);
+  box-shadow: 0 0 12px rgba(201,162,39,.15);
+}
+.btn-outline:hover {
+  background: var(--gold-dim);
+  transform: translateY(-3px);
+  box-shadow: 0 0 24px rgba(201,162,39,.3);
+}
+
+/* ── SECOES ── */
+section {
+  padding-block: clamp(var(--space-12), 7vw, var(--space-20));
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+.section-label {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: var(--space-3);
+  opacity: .8;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  color: var(--text);
+  margin-bottom: var(--space-2);
+}
+.section-title span { color: var(--gold); }
+
+.section-ornament {
+  color: var(--gold);
+  opacity: .5;
+  font-size: var(--text-xs);
+  letter-spacing: .4em;
+  margin-block: var(--space-3);
+}
+
+.section-desc {
+  color: var(--text-muted);
+  max-width: 56ch;
+  margin-inline: auto;
+  font-size: var(--text-base);
+}
+
+/* ── HERO ── */
+#home {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-block: var(--space-20);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(26,58,138,.4) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(155,28,28,.2) 0%, transparent 60%),
+    url('https://images.unsplash.com/photo-1598153346810-860daa814c4b?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+  opacity: .3;
+  z-index: 0;
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0;
+  animation: particle-float 8s ease-in-out infinite;
+}
+.particle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+.particle:nth-child(2) { top: 60%; left: 80%; animation-delay: 1.5s; }
+.particle:nth-child(3) { top: 35%; left: 65%; animation-delay: 3s; }
+.particle:nth-child(4) { top: 75%; left: 25%; animation-delay: 4.5s; }
+.particle:nth-child(5) { top: 15%; left: 50%; animation-delay: 2s; }
+.particle:nth-child(6) { top: 50%; left: 40%; animation-delay: 5s; }
+
+@keyframes particle-float {
+  0%,100% { opacity: 0; transform: translateY(0) scale(1); }
+  20%      { opacity: .8; }
+  80%      { opacity: .4; }
+  50%      { transform: translateY(-40px) scale(1.5); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  letter-spacing: .25em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: var(--space-4);
+  opacity: .85;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: var(--space-6);
+}
+
+.hero-brand {
+  display: block;
+  background: linear-gradient(120deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-text 4s linear infinite;
+}
+
+@keyframes shimmer-text {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.hero-subtitle {
+  font-size: var(--text-lg);
+  color: var(--text-muted);
+  max-width: 60ch;
+  margin-bottom: var(--space-8);
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.hero-scroll-hint span {
+  display: block;
+  width: 2px;
+  height: 8px;
+  background: var(--gold);
+  border-radius: 2px;
+  opacity: .4;
+  animation: scroll-hint .9s ease-in-out infinite alternate;
+}
+.hero-scroll-hint span:nth-child(2) { animation-delay: .15s; }
+.hero-scroll-hint span:nth-child(3) { animation-delay: .3s; }
+@keyframes scroll-hint {
+  from { opacity: .2; transform: scaleY(.7); }
+  to   { opacity: .8; transform: scaleY(1); }
+}
+
+/* ── CASAS ── */
+#houses { background-color: var(--bg-section); }
+
+.houses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-6);
+}
+
+.house-card {
+  position: relative;
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+  border: 1px solid var(--border-subtle);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.house-glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  border-radius: inherit;
+  transition: opacity var(--transition);
+  pointer-events: none;
+}
+
+.house-card:hover { transform: translateY(-8px); }
+.house-card:hover .house-glow { opacity: 1; }
+.house-card:focus-within { transform: translateY(-4px); }
+
+.house-card.gryffindor { border-top: 3px solid var(--gryffindor-red); }
+.house-card.gryffindor:hover { box-shadow: 0 20px 48px rgba(155,28,28,.35); border-color: rgba(155,28,28,.4); }
+.house-card.gryffindor .house-glow { background: radial-gradient(ellipse at top, rgba(155,28,28,.12) 0%, transparent 70%); }
+
+.house-card.slytherin { border-top: 3px solid var(--slytherin-green); }
+.house-card.slytherin:hover { box-shadow: 0 20px 48px rgba(26,92,46,.35); border-color: rgba(26,92,46,.4); }
+.house-card.slytherin .house-glow { background: radial-gradient(ellipse at top, rgba(26,92,46,.12) 0%, transparent 70%); }
+
+.house-card.ravenclaw { border-top: 3px solid var(--ravenclaw-blue); }
+.house-card.ravenclaw:hover { box-shadow: 0 20px 48px rgba(26,58,138,.35); border-color: rgba(26,58,138,.4); }
+.house-card.ravenclaw .house-glow { background: radial-gradient(ellipse at top, rgba(26,58,138,.12) 0%, transparent 70%); }
+
+.house-card.hufflepuff { border-top: 3px solid var(--hufflepuff-yellow); }
+.house-card.hufflepuff:hover { box-shadow: 0 20px 48px rgba(232,182,0,.25); border-color: rgba(232,182,0,.4); }
+.house-card.hufflepuff .house-glow { background: radial-gradient(ellipse at top, rgba(232,182,0,.1) 0%, transparent 70%); }
+
+.house-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-5);
+}
+.house-icon img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 16px rgba(201,162,39,.3));
+  transition: transform var(--transition);
+}
+.house-card:hover .house-icon img { transform: scale(1.08) rotate(-2deg); }
+
+.house-card h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--gold);
+  margin-bottom: var(--space-3);
+}
+
+.house-card p {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.65;
+}
+
+.house-colors-bar {
+  display: block;
+  height: 3px;
+  border-radius: 2px;
+  margin-top: var(--space-5);
+  opacity: .6;
+}
+.gryffindor .house-colors-bar { background: linear-gradient(90deg, var(--gryffindor-red), var(--gryffindor-gold)); }
+.slytherin  .house-colors-bar { background: linear-gradient(90deg, var(--slytherin-green), var(--slytherin-silver)); }
+.ravenclaw  .house-colors-bar { background: linear-gradient(90deg, var(--ravenclaw-blue), var(--ravenclaw-bronze)); }
+.hufflepuff .house-colors-bar { background: linear-gradient(90deg, var(--hufflepuff-yellow), var(--hufflepuff-black)); }
+
+/* ── PERSONAGENS ── */
+#characters { background-color: var(--bg); }
+
+.characters-slider-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.slider-track {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.slider-container {
+  display: flex;
+  gap: var(--space-5);
+  transition: transform .45s cubic-bezier(.16,1,.3,1);
+}
+
+.character-card {
+  min-width: 300px;
+  max-width: 300px;
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  transition: transform var(--transition), box-shadow var(--transition);
+  flex-shrink: 0;
+}
+
+.character-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.5);
+}
+
+.character-img {
+  height: 220px;
+  background-size: cover;
+  background-position: center top;
+  position: relative;
+}
+.character-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--bg-card) 0%, transparent 50%);
+}
+
+.character-info {
+  padding: var(--space-5);
+}
+
+.character-info h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--gold);
+  margin-bottom: var(--space-3);
+}
+
+.character-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.meta-items {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.house-badge {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.house-badge.gryffindor { background: var(--gryffindor-red); }
+.house-badge.slytherin  { background: var(--slytherin-green); }
+.house-badge.ravenclaw  { background: var(--ravenclaw-blue); }
+.house-badge.hufflepuff { background: var(--hufflepuff-yellow); }
+.house-badge.unknown    { background: var(--text-faint); }
+
+.slider-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.slider-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--gold);
+  font-size: var(--text-sm);
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  cursor: pointer;
+}
+.slider-btn:hover:not(:disabled) {
+  background: var(--gold-dim);
+  transform: scale(1.1);
+  box-shadow: 0 0 16px rgba(201,162,39,.25);
+}
+.slider-btn:disabled { opacity: .3; cursor: not-allowed; }
+
+.slider-dots {
+  display: flex;
+  gap: var(--space-2);
+}
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-faint);
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+  padding: 0;
+}
+.slider-dot.active {
+  background: var(--gold);
+  transform: scale(1.3);
+}
+
+/* Skeleton --*/
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-card) 25%, #1e1f2e 50%, var(--bg-card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--radius-md);
+}
+.skeleton-card {
+  min-width: 300px;
+  height: 340px;
+  border-radius: var(--radius-xl);
+}
+
+/* ── FEITIÇOS ── */
+#spells { background-color: var(--bg-section); }
+
+.spells-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-5);
+  margin-bottom: var(--space-8);
+}
+
+.spell-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  border: 1px solid var(--border-subtle);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.spell-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.spell-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,.4);
+  border-color: var(--border);
+}
+.spell-card:hover::before { opacity: 1; }
+
+.spell-wand-icon {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-3);
+}
+
+.spell-card h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  color: var(--gold);
+  margin-bottom: var(--space-2);
+}
+
+.spell-card p {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.load-more-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* ── QUIZ (Em breve) ── */
+#quiz { background-color: var(--bg); }
+
+.quiz-coming-soon {
+  position: relative;
+  max-width: 640px;
+  margin-inline: auto;
+  text-align: center;
+  padding: var(--space-16) var(--space-8);
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  box-shadow: 0 0 60px rgba(201,162,39,.08);
+  overflow: hidden;
+}
+
+.quiz-runes {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-inline: var(--space-4);
+  pointer-events: none;
+}
+.quiz-runes span {
+  font-size: 2.5rem;
+  color: var(--gold);
+  opacity: .04;
+  font-family: var(--font-display);
+  animation: rune-pulse 4s ease-in-out infinite;
+}
+.quiz-runes span:nth-child(2) { animation-delay: .7s; }
+.quiz-runes span:nth-child(3) { animation-delay: 1.4s; }
+.quiz-runes span:nth-child(4) { animation-delay: 2.1s; }
+.quiz-runes span:nth-child(5) { animation-delay: 2.8s; }
+.quiz-runes span:nth-child(6) { animation-delay: 3.5s; }
+@keyframes rune-pulse {
+  0%,100% { opacity: .04; transform: scale(1); }
+  50%     { opacity: .1;  transform: scale(1.05); }
+}
+
+.quiz-orb {
+  font-size: 4rem;
+  margin-bottom: var(--space-5);
+  animation: orb-float 4s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 0 20px rgba(201,162,39,.5));
+}
+@keyframes orb-float {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-12px); }
+}
+
+.quiz-coming-soon h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--gold);
+  margin-bottom: var(--space-4);
+  position: relative;
+  z-index: 1;
+}
+
+.quiz-coming-soon p {
+  color: var(--text-muted);
+  max-width: 44ch;
+  margin-inline: auto;
+  margin-bottom: var(--space-6);
+  position: relative;
+  z-index: 1;
+}
+
+.soon-pill {
+  display: inline-block;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── ANIMAÇÕES GERAIS ── */
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-12px); }
+}
+.floating { animation: float 5s ease-in-out infinite; }
+
+/* Fade-in ao scroll */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 768px) {
+  .hero-title { font-size: clamp(2rem, 8vw, 3.5rem); }
+  .hero-subtitle { font-size: var(--text-base); }
+  .hero-actions { flex-direction: column; align-items: flex-start; }
+  .houses-grid { grid-template-columns: 1fr 1fr; }
+  .spells-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .houses-grid { grid-template-columns: 1fr; }
+  .container { padding-inline: var(--space-4); }
+  .quiz-coming-soon { padding: var(--space-10) var(--space-5); }
+}

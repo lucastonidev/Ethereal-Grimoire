@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ethereal Grimoire — O Mundo Mágico de Harry Potter</title>
+  <meta name="description" content="Explore o mundo mágico de Harry Potter: casas de Hogwarts, personagens, feitiços e curiosidades." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ethereal Grimoire — O Mundo Mágico de Harry Potter" />
+  <meta property="og:description" content="Explore o mundo mágico de Harry Potter: casas de Hogwarts, personagens, feitiços e curiosidades." />
+  <meta property="og:image" content="./assets/img/og-image.jpg" />
+  <meta property="og:url" content="https://lucastonidev.github.io/Ethereal-Grimoire/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./assets/img/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="./assets/img/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="./assets/img/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/img/favicon/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Ethereal" />
+  <link rel="manifest" href="./site.webmanifest" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+<body>
+
+  <!-- Skip to content -->
+  <a href="#main-content" class="sr-only">Pular para o conteúdo</a>
+
+  <!-- ══════════ HEADER ══════════ -->
+  <header id="site-header">
+    <div class="container">
+      <nav class="navbar" aria-label="Navegação principal">
+
+        <a href="#home" class="logo" aria-label="Ethereal Grimoire — início">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32" aria-hidden="true">
+            <circle cx="18" cy="18" r="17" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+            <path d="M18 4 L20 14 L30 12 L22 18 L28 28 L18 22 L8 28 L14 18 L6 12 L16 14 Z" fill="currentColor" opacity="0.9"/>
+            <circle cx="18" cy="18" r="3" fill="currentColor"/>
+          </svg>
+          Ethereal Grimoire
+        </a>
+
+        <button class="mobile-menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-links">
+          <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
+
+        <ul class="nav-links" id="nav-links" role="list">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#houses">Casas</a></li>
+          <li><a href="#characters">Personagens</a></li>
+          <li><a href="#spells">Feitiços</a></li>
+          <li>
+            <a href="#quiz" class="nav-quiz">
+              Quiz
+              <span class="quiz-badge">Em breve</span>
+            </a>
+          </li>
+          <li><a href="#about">Sobre</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ══════════ HERO ══════════ -->
+    <section id="home" class="hero" aria-label="Bem-vindo">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-particles" aria-hidden="true">
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span>
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span>
+      </div>
+      <div class="container">
+        <div class="hero-content">
+          <span class="hero-eyebrow">⚡ O Mundo Bruxo Aguarda</span>
+          <h1 class="hero-title floating">
+            Bem-vindo ao<br>
+            <span class="hero-brand">Ethereal Grimoire</span>
+          </h1>
+          <p class="hero-subtitle">
+            Explore o universo de Harry Potter — descubra as casas de Hogwarts,
+            conheça os personagens memoráveis e aprenda os feitiços mais icônicos.
+          </p>
+          <div class="hero-actions">
+            <a href="#houses" class="btn btn-primary">
+              <i class="fas fa-hat-wizard" aria-hidden="true"></i>
+              Explorar Casas
+            </a>
+            <a href="#spells" class="btn btn-outline">
+              <i class="fas fa-magic" aria-hidden="true"></i>
+              Ver Feitiços
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    </section>
+
+    <!-- ══════════ CASAS ══════════ -->
+    <section id="houses" aria-labelledby="houses-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Hogwarts</span>
+          <h2 class="section-title" id="houses-title">As Quatro <span>Casas</span></h2>
+          <div class="section-ornament" aria-hidden="true">✦ ✦ ✦</div>
+          <p class="section-desc">Cada casa representa valores únicos e abriga os bruxos mais memoráveis da história.</p>
+        </div>
+
+        <div class="houses-grid">
+          <article class="house-card gryffindor" tabindex="0">
+            <div class="house-glow" aria-hidden="true"></div>
+            <div class="house-icon">
+              <img src="./assets/img/gryffindor.png" alt="Brasão da Grifinória" width="120" height="120" loading="lazy" />
+            </div>
+            <h3>Grifinória</h3>
+            <p>Valentia, ousadia e nobreza. Fundada por Godric Gryffindor, valoriza a coragem acima de tudo. Seu animal símbolo é o leão — escarlate e ouro.</p>
+            <span class="house-colors-bar" aria-hidden="true"></span>
+          </article>
+
+          <article class="house-card slytherin" tabindex="0">
+            <div class="house-glow" aria-hidden="true"></div>
+            <div class="house-icon">
+              <img src="./assets/img/slytherin.png" alt="Brasão da Sonserina" width="120" height="120" loading="lazy" />
+            </div>
+            <h3>Sonserina</h3>
+            <p>Ambição, astúcia e determinação. Fundada por Salazar Slytherin, valoriza a grandeza e a habilidade. Seu animal símbolo é a serpente — verde e prata.</p>
+            <span class="house-colors-bar" aria-hidden="true"></span>
+          </article>
+
+          <article class="house-card ravenclaw" tabindex="0">
+            <div class="house-glow" aria-hidden="true"></div>
+            <div class="house-icon">
+              <img src="./assets/img/ravenclaw.png" alt="Brasão do Corvinal" width="120" height="120" loading="lazy" />
+            </div>
+            <h3>Corvinal</h3>
+            <p>Inteligência, criatividade e sabedoria. Fundada por Rowena Ravenclaw, valoriza o conhecimento acima de tudo. Seu animal símbolo é a águia — azul e bronze.</p>
+            <span class="house-colors-bar" aria-hidden="true"></span>
+          </article>
+
+          <article class="house-card hufflepuff" tabindex="0">
+            <div class="house-glow" aria-hidden="true"></div>
+            <div class="house-icon">
+              <img src="./assets/img/hufflepuff.png" alt="Brasão da Lufa-Lufa" width="120" height="120" loading="lazy" />
+            </div>
+            <h3>Lufa-Lufa</h3>
+            <p>Lealdade, paciência e justiça. Fundada por Helga Hufflepuff, valoriza o trabalho árduo e a dedicação. Seu animal símbolo é o texugo — amarelo e preto.</p>
+            <span class="house-colors-bar" aria-hidden="true"></span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ PERSONAGENS ══════════ -->
+    <section id="characters" aria-labelledby="characters-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Galeria</span>
+          <h2 class="section-title" id="characters-title">Personagens <span>Principais</span></h2>
+          <div class="section-ornament" aria-hidden="true">✦ ✦ ✦</div>
+          <p class="section-desc">Os bruxos e personagens que definiram o mundo mágico para sempre.</p>
+        </div>
+
+        <div class="characters-slider-wrapper">
+          <div class="slider-track">
+            <div class="slider-container" id="main-character" role="region" aria-label="Carrossel de personagens"></div>
+          </div>
+          <div class="slider-controls">
+            <button class="slider-btn prev" aria-label="Personagem anterior">
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <div class="slider-dots" id="slider-dots" aria-label="Indicadores do carrossel"></div>
+            <button class="slider-btn next" aria-label="Próximo personagem">
+              <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ FEITIÇOS ══════════ -->
+    <section id="spells" aria-labelledby="spells-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Encantamentos</span>
+          <h2 class="section-title" id="spells-title">Feitiços e <span>Encantamentos</span></h2>
+          <div class="section-ornament" aria-hidden="true">✦ ✦ ✦</div>
+          <p class="section-desc">Os feitiços mais poderosos e conhecidos do mundo bruxo.</p>
+        </div>
+
+        <div class="spells-grid" id="spells-grid"></div>
+
+        <div class="load-more-wrapper">
+          <button id="loadMoreBtn" class="btn btn-outline">
+            <i class="fas fa-scroll" aria-hidden="true"></i>
+            Carregar Mais Feitiços
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ QUIZ (Em breve) ══════════ -->
+    <section id="quiz" aria-labelledby="quiz-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Desafio</span>
+          <h2 class="section-title" id="quiz-title">Quiz <span>Mágico</span></h2>
+          <div class="section-ornament" aria-hidden="true">✦ ✦ ✦</div>
+        </div>
+
+        <div class="quiz-coming-soon">
+          <div class="quiz-runes" aria-hidden="true">
+            <span>ᚠ</span><span>ᚢ</span><span>ᚦ</span><span>ᚨ</span><span>ᚱ</span><span>ᚲ</span>
+          </div>
+          <div class="quiz-orb" aria-hidden="true">🔮</div>
+          <h3>O Quiz está sendo preparado</h3>
+          <p>
+            Em breve você poderá testar seus conhecimentos sobre o mundo mágico de Harry Potter.
+            Prove que é digno de Hogwarts!
+          </p>
+          <span class="soon-pill">✨ Em breve</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer id="about">
+    <div class="footer-top-border" aria-hidden="true"></div>
+    <div class="container">
+      <div class="footer-inner">
+
+        <div class="footer-brand">
+          <a href="#home" class="logo" aria-label="Ethereal Grimoire">
+            <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28" aria-hidden="true">
+              <circle cx="18" cy="18" r="17" stroke="currentColor" stroke-width="1.5" opacity="0.5"/>
+              <path d="M18 4 L20 14 L30 12 L22 18 L28 28 L18 22 L8 28 L14 18 L6 12 L16 14 Z" fill="currentColor" opacity="0.9"/>
+              <circle cx="18" cy="18" r="3" fill="currentColor"/>
+            </svg>
+            Ethereal Grimoire
+          </a>
+          <p>
+            Uma homenagem ao universo mágico de Harry Potter, criada para fãs explorarem casas,
+            personagens e feitiços. Desenvolvido por Lucas Toniato com a
+            <a href="https://github.com/fedeperin/potterapi" target="_blank" rel="noopener noreferrer">PotterAPI</a>.
+          </p>
+          <div class="footer-house-strip" aria-hidden="true">
+            <span class="strip-gryffindor"></span>
+            <span class="strip-slytherin"></span>
+            <span class="strip-ravenclaw"></span>
+            <span class="strip-hufflepuff"></span>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h4>Navegação</h4>
+          <ul class="footer-links" role="list">
+            <li><a href="#home"><i class="fas fa-home" aria-hidden="true"></i> Início</a></li>
+            <li><a href="#houses"><i class="fas fa-shield-alt" aria-hidden="true"></i> Casas</a></li>
+            <li><a href="#characters"><i class="fas fa-user" aria-hidden="true"></i> Personagens</a></li>
+            <li><a href="#spells"><i class="fas fa-magic" aria-hidden="true"></i> Feitiços</a></li>
+            <li><a href="#quiz"><i class="fas fa-question-circle" aria-hidden="true"></i> Quiz</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Contato</h4>
+          <div class="social-links">
+            <a href="https://github.com/lucastonidev" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Lucas Toniato">
+              <i class="fab fa-github" aria-hidden="true"></i>
+            </a>
+            <a href="https://www.instagram.com/lucastoni0101/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Lucas Toniato">
+              <i class="fab fa-instagram" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Ethereal Grimoire — Projeto de fã, não afiliado à Warner Bros. ou J.K. Rowling.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="./assets/js/main.js"></script>
+</body>
+</html>

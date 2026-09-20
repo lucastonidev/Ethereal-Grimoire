@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <%- include("../partials/head.ejs", { title: title }) %>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/pages/home.css" />
+</head>
+
+<body>
+  <%- include("../partials/header.ejs") %>
+  <main id="main-content">
+
+    <section id="home" class="hero" aria-label="Bem-vindo">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-particles" aria-hidden="true">
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span>
+        <span class="particle"></span><span class="particle"></span><span class="particle"></span>
+      </div>
+      <div class="container">
+        <div class="hero-content">
+          <span class="hero-eyebrow">⚡ O Mundo Bruxo Aguarda</span>
+          <h1 class="hero-title floating">
+            Bem-vindo ao<br>
+            <span class="hero-brand">Ethereal Grimoire</span>
+          </h1>
+          <p class="hero-subtitle">
+            Explore o universo de Harry Potter — descubra as casas de Hogwarts,
+            conheça os personagens memoráveis e aprenda os feitiços mais icônicos.
+          </p>
+          <div class="hero-actions">
+            <a href="/#houses" class="btn btn-primary">
+              <i class="fas fa-hat-wizard" aria-hidden="true"></i>
+              Explorar Casas
+            </a>
+            <a href="/quiz" class="btn btn-outline">
+              <i class="fas fa-dungeon" aria-hidden="true"></i>
+              Ir para o Quiz
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-scroll-hint" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    </section>
+
+    <section id="houses" aria-labelledby="houses-title">
+      <div class="container">
+        <!-- Cabeçalho da Seção -->
+        <div class="section-header">
+          <span class="section-label">Hogwarts</span>
+          <h2 class="section-title" id="houses-title">As Quatro <span>Casas</span></h2>
+          <div class="section-ornament" aria-hidden="true">✦ ✦ ✦</div>
+          <p class="section-desc">Cada casa representa valores únicos e abriga os bruxos mais memoráveis da história.</p>
+        </div>
+
+        <!-- Grid de Casas Centralizado -->
+        <div class="houses-grid">
+          <!-- Grifinória -->
+          <article class="honor-card gryffindor" tabindex="0">
+            <div class="honor-glow" aria-hidden="true"></div>
+            <div class="honor-crest">
+              <img src="https://raw.githubusercontent.com/lucastonidev/ethereal-data/main/image/houses/gryffindor.png" alt="Brasão da Grifinória" loading="lazy" />
+            </div>
+            <div class="honor-content">
+              <div class="honor-header">
+                <h3>Grifinória</h3>
+                <span class="honor-element" title="Elemento: Fogo"><i class="fas fa-fire"></i></span>
+              </div>
+              <p class="honor-desc">Hogar de los nobles y audaces, valora los actos heroicos y la firmeza moral en momentos críticos.</p>
+            </div>
+          </article>
+
+          <!-- Sonserina -->
+          <article class="honor-card slytherin" tabindex="0">
+            <div class="honor-glow" aria-hidden="true"></div>
+            <div class="honor-crest">
+              <img src="https://raw.githubusercontent.com/lucastonidev/ethereal-data/main/image/houses/slytherin.png" alt="Brasão da Sonserina" loading="lazy" />
+            </div>
+            <div class="honor-content">
+              <div class="honor-header">
+                <h3>Sonserina</h3>
+                <span class="honor-element" title="Elemento: Água"><i class="fas fa-tint"></i></span>
+              </div>
+              <p class="honor-desc">Destinada a los decididos y estratégicos, donde la desenvoltura y la búsqueda de grandeza guían el camino.</p>
+            </div>
+          </article>
+
+          <!-- Corvinal -->
+          <article class="honor-card ravenclaw" tabindex="0">
+            <div class="honor-glow" aria-hidden="true"></div>
+            <div class="honor-crest">
+              <img src="https://raw.githubusercontent.com/lucastonidev/ethereal-data/main/image/houses/ravenclaw.png" alt="Brasão da Corvinal" loading="lazy" />
+            </div>
+            <div class="honor-content">
+              <div class="honor-header">
+                <h3>Corvinal</h3>
+                <span class="honor-element" title="Elemento: Ar"><i class="fas fa-wind"></i></span>
+              </div>
+              <p class="honor-desc">Lugar de pensadores e inquisitivos, celebra la mente aguda, la originalidad y el intelecto abierto.</p>
+            </div>
+          </article>
+
+          <!-- Lufa-Lufa -->
+          <article class="honor-card hufflepuff" tabindex="0">
+            <div class="honor-glow" aria-hidden="true"></div>
+            <div class="honor-crest">
+              <img src="https://raw.githubusercontent.com/lucastonidev/ethereal-data/main/image/houses/hufflepuff.png" alt="Brasão da Lufa-Lufa" loading="lazy" />
+            </div>
+            <div class="honor-content">
+              <div class="honor-header">
+                <h3>Lufa-Lufa</h3>
+                <span class="honor-element" title="Elemento: Terra"><i class="fas fa-leaf"></i></span>
+              </div>
+              <p class="honor-desc">Acoge a los justos y leales, priorizando la constancia, el compañerismo y el esfuerzo honesto.</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- Botão de ação da seção -->
+        <div class="load-more-wrapper" style="margin-top: var(--space-10);">
+          <a href="/houses" class="btn btn-outline houses-btn">
+            <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
+            Explorar o Mapa dos Marotos
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="characters" aria-labelledby="characters-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Galeria</span>
+          <h2 class="section-title" id="characters-title">Personagens <span>Principais</span></h2>
+          <div class="section-ornament" aria-hidden="true">✦ ✦ ✦</div>
+          <p class="section-desc">Os bruxos e personagens que definiram o mundo mágico para sempre.</p>
+        </div>
+
+        <div class="characters-slider-wrapper">
+          <div class="slider-track">
+            <div class="slider-container" id="main-character" role="region" aria-label="Carrossel de personagens"></div>
+          </div>
+          <div class="slider-controls">
+            <!-- ... (botões prev/next e dots) ... -->
+          </div>
+        </div>
+
+        <!-- NOVO: Botão Ver Todos -->
+        <div class="load-more-wrapper" style="margin-top: var(--space-8);">
+          <a href="/characters" class="btn btn-outline">
+            <i class="fas fa-users" aria-hidden="true"></i>
+            Ver Todos os Personagens
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="spells" aria-labelledby="spells-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Encantamentos</span>
+          <h2 class="section-title" id="spells-title">Feitiços e <span>Encantamentos</span></h2>
+          <div class="section-ornament" aria-hidden="true">✦ ✦ ✦</div>
+          <p class="section-desc">Os feitiços mais poderosos e conhecidos do mundo bruxo.</p>
+        </div>
+
+        <div class="spells-grid" id="spells-grid"></div>
+
+        <div class="load-more-wrapper">
+          <!-- NOVO: Link no lugar do botão Carregar Mais -->
+          <a href="/spells" class="btn btn-outline">
+            <i class="fas fa-magic" aria-hidden="true"></i>
+            Ver Todos os Feitiços
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="quiz" aria-labelledby="quiz-title">
+      <div class="container">
+        <div class="quiz-cta-card">
+          <div class="quiz-cta-glow" aria-hidden="true"></div>
+
+          <div class="quiz-cta-content">
+            <div class="quiz-cta-icon">
+              <i class="fas fa-dungeon"></i>
+            </div>
+
+            <div class="quiz-cta-text">
+              <span class="quiz-cta-eyebrow">O Grande Desafio</span>
+              <h2 class="quiz-cta-title" id="quiz-title">Teste seus <span>Conhecimentos</span></h2>
+              <p>O Chapéu Seletor o aguarda. Prove seu valor nos exames de N.O.M.s e N.I.E.M.s, ou descubra qual personagem compartilha a sua essência mágica.</p>
+
+              <div class="quiz-cta-actions">
+                <a href="/quiz" class="btn btn-primary">
+                  <i class="fas fa-sparkles" aria-hidden="true"></i>
+                  Entrar no Quiz Hub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Runas decorativas flutuantes ao fundo -->
+          <div class="quiz-runes-bg" aria-hidden="true">
+            <span>ᚠ</span><span>ᚢ</span><span>ᚦ</span><span>ᚨ</span><span>ᚱ</span><span>ᚲ</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <%- include('../partials/footer') %>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+
+</html>

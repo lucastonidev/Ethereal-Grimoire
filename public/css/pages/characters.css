@@ -1,0 +1,445 @@
+/* ── CABEÇALHO DA PÁGINA ── */
+.page-header {
+  padding-top: calc(var(--space-20) + var(--space-12));
+  padding-bottom: var(--space-8);
+  text-align: center;
+  background: radial-gradient(
+    ellipse at top,
+    rgba(201, 162, 39, 0.05) 0%,
+    transparent 70%
+  );
+}
+
+/* ── FILTROS MÁGICOS ── */
+.house-filters {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+  margin: var(--space-8) 0;
+  flex-wrap: wrap;
+}
+
+.house-filter-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  transition: all var(--transition);
+}
+
+.house-filter-btn:hover,
+.house-filter-btn.active {
+  border-color: var(--gold);
+  color: var(--gold);
+  box-shadow: 0 0 15px rgba(201, 162, 39, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ── ÍCONES SVG COM MASK (Cores Dinâmicas) ── */
+.house-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: var(--text); /* Cor branca/gelo padrão do seu tema */
+  
+  /* Configuração da máscara */
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  
+  transition: background-color var(--transition);
+}
+
+/* Caminho de cada SVG */
+.icon-gryffindor { 
+  -webkit-mask-image: url('/img/houses/grifinoria.svg'); 
+  mask-image: url('/img/houses/grifinoria.svg'); 
+}
+.icon-slytherin { 
+  -webkit-mask-image: url('/img/houses/sonserina.svg'); 
+  mask-image: url('/img/houses/sonserina.svg'); 
+}
+.icon-ravenclaw { 
+  -webkit-mask-image: url('/img/houses/corvinal.svg'); 
+  mask-image: url('/img/houses/corvinal.svg'); 
+}
+.icon-hufflepuff { 
+  -webkit-mask-image: url('/img/houses/lufa-lufa.svg'); 
+  mask-image: url('/img/houses/lufa-lufa.svg'); 
+}
+
+/* ── CORES NO HOVER E ATIVO ── */
+.house-filter-btn:hover .icon-gryffindor,
+.house-filter-btn.active .icon-gryffindor {
+  background-color: var(--gryffindor-red);
+}
+
+.house-filter-btn:hover .icon-slytherin,
+.house-filter-btn.active .icon-slytherin {
+  background-color: var(--slytherin-green);
+}
+
+.house-filter-btn:hover .icon-ravenclaw,
+.house-filter-btn.active .icon-ravenclaw {
+  background-color: var(--ravenclaw-blue);
+}
+
+.house-filter-btn:hover .icon-hufflepuff,
+.house-filter-btn.active .icon-hufflepuff {
+  background-color: var(--hufflepuff-yellow);
+}
+
+/* ── RETRATOS MÁGICOS (CARDS) ── */
+.characters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-8);
+  padding-bottom: var(--space-20);
+}
+
+.magic-portrait {
+  position: relative;
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  padding: var(--space-2);
+  border: 1px solid var(--border);
+  box-shadow:
+    inset 0 0 20px rgba(0, 0, 0, 0.8),
+    0 10px 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.magic-portrait::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 50%,
+    rgba(201, 162, 39, 0.05) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+.portrait-img-wrapper {
+  width: 100%;
+  height: 380px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+}
+
+.portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  filter: sepia(0.2) contrast(1.1);
+  transition:
+    transform 1s ease,
+    filter 0.5s ease;
+}
+
+.magic-portrait:hover {
+  transform: scale(1.03) translateY(-5px);
+  border-color: var(--house-color, var(--gold));
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.7),
+    0 0 20px var(--house-color-dim, rgba(201, 162, 39, 0.2));
+}
+
+.magic-portrait:hover .portrait-img {
+  transform: scale(1.08);
+  filter: sepia(0) contrast(1.2);
+}
+
+.portrait-data {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    to top,
+    rgba(9, 9, 15, 1) 0%,
+    rgba(9, 9, 15, 0.9) 60%,
+    transparent 100%
+  );
+  padding: var(--space-10) var(--space-5) var(--space-4);
+  transform: translateY(40%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 3;
+}
+
+.magic-portrait:hover .portrait-data {
+  transform: translateY(0);
+}
+
+.char-name {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: var(--space-1);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.char-role {
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-4);
+}
+
+.char-stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.4s ease 0.1s,
+    transform 0.4s ease 0.1s;
+}
+
+.magic-portrait:hover .char-stats {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--text-sm);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 4px;
+}
+
+.stat-label {
+  color: var(--text-faint);
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+.stat-value {
+  color: var(--text);
+}
+
+.house-gryffindor {
+  --house-color: var(--gryffindor-red);
+  --house-color-dim: rgba(155, 28, 28, 0.4);
+}
+
+.house-slytherin {
+  --house-color: var(--slytherin-green);
+  --house-color-dim: rgba(26, 92, 46, 0.4);
+}
+
+.house-ravenclaw {
+  --house-color: var(--ravenclaw-blue);
+  --house-color-dim: rgba(26, 58, 138, 0.4);
+}
+
+.house-hufflepuff {
+  --house-color: var(--hufflepuff-yellow);
+  --house-color-dim: rgba(232, 182, 0, 0.4);
+}
+
+/* ── MODAL MÁGICO ── */
+.char-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 9, 15, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.char-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.char-modal-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  width: 90%;
+  max-width: 800px;
+  position: relative;
+  transform: translateY(40px) scale(0.95);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.8),
+    inset 0 0 40px rgba(201, 162, 39, 0.05);
+  overflow: hidden;
+}
+
+.char-modal-overlay.active .char-modal-content {
+  transform: translateY(0) scale(1);
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  color: var(--text-muted);
+  font-size: var(--text-lg);
+  z-index: 10;
+  transition: color var(--transition);
+}
+
+.close-modal-btn:hover {
+  color: var(--gold);
+}
+
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 0;
+}
+
+.modal-left {
+  position: relative;
+  padding: var(--space-6);
+  background: rgba(0, 0, 0, 0.2);
+  border-right: 1px solid var(--border-subtle);
+  /* Adicionado para centralizar a logo abaixo da foto */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-img-wrapper {
+  width: 100%;
+  aspect-ratio: 3/4;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 2px solid var(--gold);
+  position: relative;
+}
+
+.modal-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-right {
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal-eyebrow {
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  /* Substituímos o font-size fixo pelo clamp para não explodir nomes grandes */
+  font-size: clamp(1.8rem, 4vw, 2.5rem); 
+  color: var(--text);
+  line-height: 1.1;
+  /* Garante que o texto vai quebrar se não couber na linha */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.modal-aka {
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: var(--space-8);
+}
+
+.modal-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.detail-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-box i {
+  color: var(--gold);
+  margin-bottom: var(--space-2);
+  font-size: 1.2rem;
+}
+
+.detail-box small {
+  color: var(--text-faint);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detail-box span {
+  color: var(--text);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ── ESTILO DA LOGO DA CASA NO MODAL ── */
+.modal-house-badge {
+  margin-top: var(--space-6);
+  width: 70px;
+  height: 70px;
+  /* Configuração da máscara (a imagem e a cor vão vir do JS dinamicamente) */
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  opacity: 0.9;
+  transition: background-color var(--transition);
+}
+
+@media (max-width: 768px) {
+  .modal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-left {
+    display: none;
+  }
+}

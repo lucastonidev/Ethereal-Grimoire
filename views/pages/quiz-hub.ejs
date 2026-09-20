@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <%- include("../partials/head.ejs", { title: title }) %>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/pages/quiz-hub.css" />
+</head>
+
+<body>
+
+  <%- include("../partials/header.ejs") %>
+
+  <main>
+    <section id="quiz-hub">
+      <div class="quiz-hub-bg"></div>
+      <div class="container">
+
+        <div class="quiz-hub-header">
+          <span class="quiz-hub-label">Desafios Mágicos</span>
+          <h1 class="quiz-hub-title">Teste seus <span>Conhecimentos</span></h1>
+          <p class="quiz-hub-desc">
+            Escolha um caminho e prove o seu valor. Desde descobrir a sua verdadeira casa até testar seus conhecimentos sobre feitiços e história da magia.
+          </p>
+        </div>
+        <div class="quiz-filters" id="category-container">
+          <button class="filter-btn active" data-filter="all">Todos os Desafios</button>
+          <button class="filter-btn" data-filter="sorting">Chapéu Seletor</button>
+          <button class="filter-btn" data-filter="trivia">Conhecimentos Gerais</button>
+          <button class="filter-btn" data-filter="character">Personalidade</button>
+        </div>
+
+        <!-- Quiz Grid -->
+        <div class="quiz-grid" id="quiz-container"></div>
+      </div>
+    </section>
+  </main>
+
+  <%- include("../partials/footer.ejs") %>
+
+  <script type="module" src="/js/pages/quiz-hub.js"></script>
+  
+  <script>
+    // Lógica simples de filtro para os botões
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        // Atualiza botão ativo
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+
+        // Filtra os cards
+        const filterValue = e.target.getAttribute('data-filter');
+        const cards = document.querySelectorAll('.quiz-card');
+
+        cards.forEach(card => {
+          if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+            card.style.display = 'flex';
+            // Pequeno delay para a transição de opacidade ficar suave
+            setTimeout(() => card.style.opacity = '1', 50);
+          } else {
+            card.style.opacity = '0';
+            setTimeout(() => card.style.display = 'none', 300);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

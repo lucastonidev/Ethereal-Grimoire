@@ -1,0 +1,281 @@
+main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: var(--space-12);
+  position: relative;
+  margin-top: 4pc;
+}
+
+.quiz-app
+
+.quiz-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(201, 162, 39, 0.05) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── SCREENS ── */
+.screen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.screen.active {
+  display: flex;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── START SCREEN ── */
+.hat-icon {
+  font-size: 5rem;
+  color: var(--gold);
+  margin-bottom: var(--space-6);
+  filter: drop-shadow(0 0 20px rgba(201, 162, 39, 0.3));
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+.screen h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-4);
+  line-height: 1.1;
+}
+
+.screen p {
+  color: var(--text-muted);
+  margin-bottom: var(--space-8);
+  max-width: 50ch;
+}
+
+/* ── QUESTION SCREEN ── */
+.progress-container {
+  width: 100%;
+  margin-bottom: var(--space-8);
+  max-width: 800px;
+}
+
+.progress-text {
+  display: flex;
+  justify-content: space-between;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  margin-bottom: var(--space-2);
+  letter-spacing: 0.1em;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: var(--bg-card);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--gold);
+  width: 0%;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 10px var(--gold);
+}
+
+.question-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.question-text {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-8);
+  color: var(--text);
+}
+
+.answers-grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.answer-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  text-align: left;
+  font-size: var(--text-base);
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  cursor: pointer;
+}
+
+.answer-btn::before {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid var(--text-muted);
+  flex-shrink: 0;
+  transition: all var(--transition);
+}
+
+.answer-btn:hover {
+  background: rgba(201, 162, 39, 0.08);
+  border-color: var(--gold);
+  transform: translateX(4px);
+}
+
+.answer-btn:hover::before {
+  border-color: var(--gold);
+  background: var(--gold);
+  box-shadow: 0 0 8px var(--gold);
+}
+
+/* ── RESULT SCREEN ── */
+#result-screen {
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+  border: 2px solid transparent;
+  background: var(--bg-card);
+  position: relative;
+  overflow: hidden;
+  max-width: 800px;
+}
+
+.result-glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.house-crest-placeholder {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto var(--space-6);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+}
+
+.result-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.house-name {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  margin-bottom: var(--space-4);
+}
+
+.house-desc {
+  color: var(--text);
+  margin-bottom: var(--space-8);
+  max-width: 60ch;
+  font-size: var(--text-lg);
+}
+
+/* Cores Dinâmicas de Resultado */
+.result-gryffindor {
+  border-color: var(--gryffindor-red) !important;
+}
+.result-gryffindor .result-glow {
+  background: radial-gradient(
+    circle,
+    var(--gryffindor-red) 0%,
+    transparent 70%
+  );
+}
+.result-gryffindor .house-name {
+  color: var(--gryffindor-gold);
+}
+
+.result-slytherin {
+  border-color: var(--slytherin-green) !important;
+}
+.result-slytherin .result-glow {
+  background: radial-gradient(
+    circle,
+    var(--slytherin-green) 0%,
+    transparent 70%
+  );
+}
+.result-slytherin .house-name {
+  color: var(--slytherin-silver);
+}
+
+.result-ravenclaw {
+  border-color: var(--ravenclaw-blue) !important;
+}
+.result-ravenclaw .result-glow {
+  background: radial-gradient(
+    circle,
+    var(--ravenclaw-blue) 0%,
+    transparent 70%
+  );
+}
+.result-ravenclaw .house-name {
+  color: var(--ravenclaw-bronze);
+}
+
+.result-hufflepuff {
+  border-color: var(--hufflepuff-yellow) !important;
+}
+.result-hufflepuff .result-glow {
+  background: radial-gradient(
+    circle,
+    var(--hufflepuff-yellow) 0%,
+    transparent 70%
+  );
+}
+.result-hufflepuff .house-name {
+  color: var(--hufflepuff-yellow);
+}

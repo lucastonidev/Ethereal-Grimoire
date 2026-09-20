@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <%- include("../partials/head.ejs", { title: title }) %>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/pages/characters.css" />
+</head>
+
+<body>
+  <%- include("../partials/header.ejs") %>
+
+  <main id="main-content">
+    <div class="page-header">
+      <div class="container">
+        <span class="section-label">Galeria Histórica</span>
+        <h1 class="section-title">Bruxos & <span>Bruxas</span> Célebres</h1>
+        <p class="section-desc">Uma coleção de retratos dos feiticeiros que moldaram a história da magia.</p>
+
+        <div class="house-filters">
+         <button class="house-filter-btn active" data-house="all">Todos</button>
+
+         <button class="house-filter-btn" data-house="gryffindor">
+           <i class="house-icon icon-gryffindor"></i> Grifinória
+         </button>
+
+         <button class="house-filter-btn" data-house="slytherin">
+           <i class="house-icon icon-slytherin"></i> Sonserina
+         </button>
+
+         <button class="house-filter-btn" data-house="ravenclaw">
+           <i class="house-icon icon-ravenclaw"></i> Corvinal
+         </button>
+
+         <button class="house-filter-btn" data-house="hufflepuff">
+           <i class="house-icon icon-hufflepuff"></i> Lufa-Lufa
+         </button>
+        </div>
+      </div>
+    </div>
+
+    <section style="padding-top: 0;">
+      <div class="container">
+        <!-- Grid vazia que será populada pelo JS -->
+        <div class="characters-grid" id="characters-grid"></div>
+      </div>
+    </section>
+
+    <!-- Modal de Dossiê do Personagem -->
+    <div class="char-modal-overlay" id="char-modal">
+      <div class="char-modal-content">
+        <button class="close-modal-btn" id="close-modal"><i class="fas fa-times"></i></button>
+
+        <div class="modal-grid">
+          <!-- Coluna Esquerda: Foto e Casa -->
+          <div class="modal-left">
+            <div class="modal-img-wrapper" id="modal-house-glow">
+              <img src="https://images.unsplash.com/photo-1618944847023-38aa001235f0?q=80&w=600&auto=format&fit=crop" alt="Personagem" id="modal-img">
+            </div>
+            <div class="modal-house-badge" id="modal-house-badge">
+              <!-- Ícone da casa será injetado aqui -->
+            </div>
+          </div>
+
+          <!-- Coluna Direita: Dados Completos -->
+          <div class="modal-right">
+            <h2 class="modal-title" id="modal-name">Harry Potter</h2>
+            <p class="modal-aka" id="modal-aka">"O Menino que Sobreviveu"</p>
+
+            <div class="modal-details-grid">
+              <div class="detail-box">
+                <i class="fas fa-wand-magic-sparkles"></i>
+                <small>Varinha</small>
+                <span id="modal-wand">Azevinho, Pena de Fênix, 11"</span>
+              </div>
+
+              <div class="detail-box">
+                <i class="fas fa-deer"></i>
+                <small>Patrono</small>
+                <span id="modal-patronus">Cervo</span>
+              </div>
+
+              <div class="detail-box">
+                <i class="fas fa-calendar-day"></i>
+                <small>Nascimento</small>
+                <span id="modal-birth">31-07-1980</span>
+              </div>
+
+              <div class="detail-box">
+                <i class="fas fa-mask"></i>
+                <small>Ator</small>
+                <span id="modal-actor">Daniel Radcliffe</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+
+  <script type="module" src="/js/pages/characters.js"></script>
+</body>
+
+</html>

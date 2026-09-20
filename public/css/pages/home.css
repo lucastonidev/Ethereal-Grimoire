@@ -1,0 +1,378 @@
+/* ── HERO ── */
+#home {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-block: var(--space-20);
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  z-index: 0;
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      rgba(26, 58, 138, 0.4) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 80% 80%,
+      rgba(155, 28, 28, 0.2) 0%,
+      transparent 60%
+    ),
+    url("https://images.unsplash.com/photo-1598153346810-860daa814c4b?q=80&w=1920&auto=format&fit=crop")
+      center/cover no-repeat;
+}
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0;
+  animation: particle-float 8s ease-in-out infinite;
+}
+.particle:nth-child(1) {
+  top: 20%;
+  left: 15%;
+  animation-delay: 0s;
+}
+.particle:nth-child(2) {
+  top: 60%;
+  left: 80%;
+  animation-delay: 1.5s;
+}
+.particle:nth-child(3) {
+  top: 35%;
+  left: 65%;
+  animation-delay: 3s;
+}
+.particle:nth-child(4) {
+  top: 75%;
+  left: 25%;
+  animation-delay: 4.5s;
+}
+.particle:nth-child(5) {
+  top: 15%;
+  left: 50%;
+  animation-delay: 2s;
+}
+.particle:nth-child(6) {
+  top: 50%;
+  left: 40%;
+  animation-delay: 5s;
+}
+
+@keyframes particle-float {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(0) scale(1);
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-40px) scale(1.5);
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+}
+.hero-eyebrow {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: var(--space-4);
+  opacity: 0.85;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: var(--space-6);
+}
+.hero-brand {
+  display: block;
+  color: transparent;
+  animation: shimmer-text 4s linear infinite;
+  background: linear-gradient(
+    120deg,
+    var(--gold) 0%,
+    var(--gold-light) 50%,
+    var(--gold) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+@keyframes shimmer-text {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+.hero-subtitle {
+  font-size: var(--text-lg);
+  color: var(--text-muted);
+  max-width: 60ch;
+  margin-bottom: var(--space-8);
+  line-height: 1.7;
+}
+.hero-actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+.hero-scroll-hint {
+  position: absolute;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.hero-scroll-hint span {
+  display: block;
+  width: 2px;
+  height: 8px;
+  background: var(--gold);
+  border-radius: 2px;
+  opacity: 0.4;
+  animation: scroll-hint 0.9s ease-in-out infinite alternate;
+}
+.hero-scroll-hint span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.hero-scroll-hint span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes scroll-hint {
+  from {
+    opacity: 0.2;
+    transform: scaleY(0.7);
+  }
+  to {
+    opacity: 0.8;
+    transform: scaleY(1);
+  }
+}
+
+/* ── LAYOUTS ESPECÍFICOS DA HOME ── */
+#houses {
+  background-color: var(--bg-section);
+}
+#characters {
+  background-color: var(--bg);
+}
+#spells {
+  background-color: var(--bg-section);
+}
+#quiz {
+  background-color: var(--bg);
+}
+
+.houses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-6);
+}
+.spells-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-5);
+  margin-bottom: var(--space-8);
+}
+.houses-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-8);
+}
+.load-more-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* ── BANNER DO QUIZ HUB (HOME) ── */
+.quiz-cta-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-12) var(--space-8);
+  overflow: hidden;
+  box-shadow: inset 0 0 60px rgba(0,0,0,0.5), 0 20px 40px rgba(0,0,0,0.4);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.quiz-cta-card:hover {
+  border-color: rgba(201, 162, 39, 0.4);
+  box-shadow: inset 0 0 80px rgba(201,162,39,0.05), 0 25px 50px rgba(0,0,0,0.6);
+}
+
+.quiz-cta-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 10% 50%, rgba(201, 162, 39, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.quiz-cta-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.quiz-cta-icon {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(201, 162, 39, 0.05);
+  border: 1px solid rgba(201, 162, 39, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: var(--gold);
+  box-shadow: 0 0 30px rgba(201,162,39,0.1);
+  animation: float-icon 6s ease-in-out infinite;
+}
+
+@keyframes float-icon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.quiz-cta-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.quiz-cta-eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-3);
+}
+
+.quiz-cta-title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  color: var(--text);
+  margin-bottom: var(--space-4);
+  line-height: 1.1;
+}
+
+.quiz-cta-title span {
+  color: var(--gold);
+}
+
+.quiz-cta-text p {
+  color: var(--text-muted);
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  margin-bottom: var(--space-6);
+  max-width: 50ch;
+}
+
+/* Runas ao fundo do card */
+.quiz-runes-bg {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: var(--space-6);
+  font-size: 6rem;
+  color: var(--gold);
+  opacity: 0.03;
+  font-family: var(--font-display);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── RESPONSIVIDADE DO BANNER ── */
+@media (max-width: 768px) {
+  .quiz-cta-content {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-6);
+  }
+  
+  .quiz-cta-text {
+    align-items: center;
+  }
+  
+  .quiz-cta-title {
+    font-size: var(--text-2xl);
+  }
+  
+  .quiz-runes-bg {
+    font-size: 4rem;
+    right: 50%;
+    transform: translate(50%, -50%);
+    opacity: 0.02;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+  .hero-subtitle {
+    font-size: var(--text-base);
+  }
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .houses-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .spells-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .houses-grid {
+    grid-template-columns: 1fr;
+  }
+  .quiz-coming-soon {
+    padding: var(--space-10) var(--space-5);
+  }
+}

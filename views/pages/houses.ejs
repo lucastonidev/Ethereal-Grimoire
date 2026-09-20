@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <%- include("../partials/head.ejs", { title: title }) %>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
+
+  <!-- Carrega a base global (que inclui o header) ANTES do css do mapa -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/pages/houses.css">
+</head>
+
+<body>
+  <!-- Inclui o Menu de Navegação -->
+  <%- include("../partials/header.ejs") %>
+
+  <main>
+    <div id="spell-screen">
+      <input type="text" id="spell-input" placeholder="O que dizes ao mapa?..." autocomplete="off">
+      <div id="spell-hint">Pista: Juro...</div>
+    </div>
+
+    <div id="house-modal">
+    </div>
+
+    <canvas id="mapCanvas"></canvas>
+
+    <div id="instructions">🖱️ Clica e arrasta para explorar | 🏴 Clica nas Bandeiras</div>
+  </main>
+
+  <script type="module" src="/js/pages/houses.js"></script>
+</body>
+
+</html>

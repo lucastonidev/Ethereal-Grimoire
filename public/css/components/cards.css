@@ -1,0 +1,535 @@
+/* ── HONOR CARDS (PÁGINA INICIAL) ── */
+.honor-card {
+  position: relative;
+  background: rgba(18, 19, 31, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8) var(--space-6) var(--space-6);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.honor-glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.honor-crest {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 160px;
+  height: 160px;
+  opacity: 0.15;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.honor-crest img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(100%) contrast(1.2);
+}
+
+.honor-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.honor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+
+.honor-header h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 4vw, 1.5rem);
+  color: var(--gold);
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.honor-element {
+  color: var(--text-faint);
+  font-size: var(--text-lg);
+  transition: color var(--transition);
+}
+
+.honor-desc {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  margin-bottom: 0;
+  transition: color var(--transition);
+}
+
+/* ── EFEITOS DE HOVER E FOCUS (Toque no Mobile) ── */
+.honor-card:hover,
+.honor-card:focus {
+  transform: translateY(-8px);
+  outline: none; /* Remove a borda azul feia de foco no mobile */
+}
+
+.honor-card:hover .honor-reveal,
+.honor-card:focus .honor-reveal {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.honor-card:hover .honor-crest,
+.honor-card:focus .honor-crest {
+  opacity: 0.8;
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.honor-card:hover .honor-crest img,
+.honor-card:focus .honor-crest img {
+  filter: grayscale(0%) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+}
+
+.honor-card:hover .honor-desc,
+.honor-card:focus .honor-desc {
+  color: var(--text);
+}
+
+/* Cores da Grifinória */
+.gryffindor:hover,
+.gryffindor:focus {
+  border-color: #7f0909;
+  box-shadow: 0 15px 40px rgba(127, 9, 9, 0.25);
+}
+.gryffindor:hover .honor-glow,
+.gryffindor:focus .honor-glow {
+  background: radial-gradient(
+    circle at top right,
+    rgba(127, 9, 9, 0.15) 0%,
+    transparent 60%
+  );
+  opacity: 1;
+}
+.gryffindor:hover .honor-element,
+.gryffindor:focus .honor-element {
+  color: #ffc500;
+}
+
+/* Cores da Sonserina */
+.slytherin:hover,
+.slytherin:focus {
+  border-color: #1a472a;
+  box-shadow: 0 15px 40px rgba(26, 71, 42, 0.25);
+}
+.slytherin:hover .honor-glow,
+.slytherin:focus .honor-glow {
+  background: radial-gradient(
+    circle at top right,
+    rgba(26, 71, 42, 0.15) 0%,
+    transparent 60%
+  );
+  opacity: 1;
+}
+.slytherin:hover .honor-element,
+.slytherin:focus .honor-element {
+  color: #aaaaaa;
+}
+
+/* Cores da Corvinal */
+.ravenclaw:hover,
+.ravenclaw:focus {
+  border-color: #0e1a40;
+  box-shadow: 0 15px 40px rgba(14, 26, 64, 0.25);
+}
+.ravenclaw:hover .honor-glow,
+.ravenclaw:focus .honor-glow {
+  background: radial-gradient(
+    circle at top right,
+    rgba(14, 26, 64, 0.2) 0%,
+    transparent 60%
+  );
+  opacity: 1;
+}
+.ravenclaw:hover .honor-element,
+.ravenclaw:focus .honor-element {
+  color: #946b2d;
+}
+
+/* Cores da Lufa-Lufa */
+.hufflepuff:hover,
+.hufflepuff:focus {
+  border-color: #ecb939;
+  box-shadow: 0 15px 40px rgba(236, 185, 57, 0.15);
+}
+.hufflepuff:hover .honor-glow,
+.hufflepuff:focus .honor-glow {
+  background: radial-gradient(
+    circle at top right,
+    rgba(236, 185, 57, 0.1) 0%,
+    transparent 60%
+  );
+  opacity: 1;
+}
+.hufflepuff:hover .honor-element,
+.hufflepuff:focus .honor-element {
+  color: #ecb939;
+}
+
+/* ── AJUSTES MOBILE PARA OS CARDS ── */
+@media (max-width: 768px) {
+  .honor-card {
+    /* Diminui o preenchimento para não ocupar a tela toda */
+    padding: var(--space-6) var(--space-5) var(--space-5);
+  }
+
+  .honor-header h3 {
+    font-size: var(--text-xl); /* Título levemente menor */
+  }
+
+  .honor-crest {
+    /* Diminui o ícone de fundo no celular */
+    width: 110px;
+    height: 110px;
+    top: -10px;
+    right: -10px;
+    opacity: 0.25; /* Deixa ele um tiquinho mais visível de cara */
+  }
+}
+
+/* ── EFEITOS DE HOVER POR CASA ── */
+.honor-card:hover {
+  transform: translateY(-8px);
+}
+
+.honor-card:hover .honor-reveal {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.honor-card:hover .honor-crest {
+  opacity: 0.8;
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.honor-card:hover .honor-crest img {
+  filter: grayscale(0%) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+}
+
+.honor-card:hover .honor-desc {
+  color: var(--text);
+}
+
+/* Cores extraídas do JSON */
+.gryffindor:hover {
+  border-color: #7f0909;
+  box-shadow: 0 15px 40px rgba(127, 9, 9, 0.25);
+}
+.gryffindor:hover .honor-glow {
+  background: radial-gradient(
+    circle at top right,
+    rgba(127, 9, 9, 0.15) 0%,
+    transparent 60%
+  );
+  opacity: 1;
+}
+.gryffindor:hover .honor-element {
+  color: #ffc500;
+}
+
+.slytherin:hover {
+  border-color: #1a472a;
+  box-shadow: 0 15px 40px rgba(26, 71, 42, 0.25);
+}
+.slytherin:hover .honor-glow {
+  background: radial-gradient(
+    circle at top right,
+    rgba(26, 71, 42, 0.15) 0%,
+    transparent 60%
+  );
+  opacity: 1;
+}
+.slytherin:hover .honor-element {
+  color: #aaaaaa;
+}
+
+.ravenclaw:hover {
+  border-color: #0e1a40;
+  box-shadow: 0 15px 40px rgba(14, 26, 64, 0.25);
+}
+.ravenclaw:hover .honor-glow {
+  background: radial-gradient(
+    circle at top right,
+    rgba(14, 26, 64, 0.2) 0%,
+    transparent 60%
+  );
+  opacity: 1;
+}
+.ravenclaw:hover .honor-element {
+  color: #946b2d;
+}
+
+.hufflepuff:hover {
+  border-color: #ecb939;
+  box-shadow: 0 15px 40px rgba(236, 185, 57, 0.15);
+}
+.hufflepuff:hover .honor-glow {
+  background: radial-gradient(
+    circle at top right,
+    rgba(236, 185, 57, 0.1) 0%,
+    transparent 60%
+  );
+  opacity: 1;
+}
+.hufflepuff:hover .honor-element {
+  color: #ecb939;
+}
+
+/* ── CHARACTER CARDS (SLIDER HOME) ── */
+.character-card {
+  position: relative;
+  min-width: 280px;
+  max-width: 280px;
+  height: 400px;
+  border-radius: var(--radius-xl);
+  background: var(--bg-card);
+  padding: var(--space-2);
+  border: 1px solid var(--border);
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.5);
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.character-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, rgba(201,162,39,0.05) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.portrait-img-wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+}
+
+.portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  filter: sepia(0.3) contrast(1.1);
+  transition: transform 1s ease, filter 0.5s ease;
+}
+
+/* O focus e active garantem que funcione com toque no celular! */
+.character-card:hover, .character-card:focus, .character-card:active {
+  transform: scale(1.03) translateY(-5px);
+  border-color: var(--gold);
+  outline: none;
+}
+
+.character-card:hover .portrait-img, .character-card:focus .portrait-img {
+  transform: scale(1.08);
+  filter: sepia(0) contrast(1.2);
+}
+
+.portrait-data {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(9,9,15,1) 0%, rgba(9,9,15,0.9) 60%, transparent 100%);
+  padding: var(--space-10) var(--space-4) var(--space-4);
+  transform: translateY(35%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 3;
+}
+
+.character-card:hover .portrait-data, .character-card:focus .portrait-data {
+  transform: translateY(0);
+}
+
+.char-name {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: var(--space-1);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.char-role {
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: var(--space-4);
+}
+
+.char-stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+}
+
+.character-card:hover .char-stats, .character-card:focus .char-stats {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--text-sm);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding-bottom: 4px;
+}
+
+.stat-label {
+  color: var(--text-faint);
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: .05em;
+}
+
+.stat-value {
+  color: var(--text);
+}
+
+/* ── GRID DOS FEITIÇOS ── */
+.spells-grid {
+  display: grid;
+  /* Mudamos de 280px para 450px para garantir que sejam horizontais e largos */
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+@media (max-width: 768px) {
+  .spells-grid {
+    grid-template-columns: 1fr; /* 1 coluna no mobile */
+  }
+}
+
+/* ── NOVO LAYOUT DO CARD ── */
+.spell-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-md); /* Borda menos arredondada, mais moderna */
+  padding: var(--space-5) var(--space-6);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--gold); /* Linha dourada na esquerda idêntica à imagem */
+  box-shadow: -2px 0 12px rgba(201, 162, 39, 0.05); /* Brilho sutil na esquerda */
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.spell-card:hover {
+  transform: translateX(
+    4px
+  ); /* Desliza para a direita ao invés de pular para cima */
+  box-shadow:
+    -4px 0 20px rgba(201, 162, 39, 0.15),
+    0 8px 24px rgba(0, 0, 0, 0.3);
+  border-color: var(--border);
+}
+
+/* ── CABEÇALHO DO CARD ── */
+.spell-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border-subtle);
+  flex-wrap: nowrap;
+}
+
+.spell-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  color: var(--gold);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  flex: 1; 
+  
+  /* ── COMBINAÇÃO PARA O ELLIPSIS FUNCIONAR ── */
+  white-space: nowrap;       /* Impede que o texto pule de linha */
+  overflow: hidden;          /* Esconde o que passar do limite */
+  text-overflow: ellipsis;   /* Adiciona os "..." no texto cortado */
+}
+
+.spell-type-badge {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  color: #8c9fae; 
+  background: transparent;
+  border: 1px solid rgba(140, 159, 174, 0.4);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  flex-shrink: 0; /* IMPEDE que a badge seja esmagada pelo título longo */
+  white-space: nowrap; /* Impede o texto interno de quebrar linha */
+  margin-top: 2px;
+}
+
+/* ── CORPO DO CARD ── */
+.spell-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.spell-pronunciation {
+  color: var(--text-faint);
+  font-style: italic;
+  font-size: var(--text-sm);
+  margin: 0;
+}
+
+.spell-desc {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  margin: 0;
+}

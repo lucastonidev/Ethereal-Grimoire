@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <%- include("../partials/head.ejs", { title: title }) %>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/pages/quiz.css" />
+</head>
+
+<body>
+  <!-- Header Padrão -->
+  <%- include("../partials/header.ejs") %>
+
+  <main style="display: flex; align-items: center;">
+    <div class="quiz-bg"></div>
+    <div class="container" style="display: flex; justify-content: center; width: 100%;">
+
+      <!-- Passando o ID do quiz para o JS através de um atributo data -->
+      <div id="quiz-app" data-quiz-id="<%= slug %>" style="width: 100%; display: flex; justify-content: center;">
+
+        <!-- TELA 1: INÍCIO -->
+        <div id="start-screen" class="screen active">
+          <i id="quiz-icon" class="fas fa-hat-wizard hat-icon"></i>
+          <h1 id="quiz-start-title">Carregando...</h1>
+          <p id="quiz-start-desc">Invocando os pergaminhos mágicos...</p>
+          <button id="btn-start-quiz" class="btn btn-primary" style="display: none;">Iniciar Desafio</button>
+        </div>
+
+        <!-- TELA 2: PERGUNTAS -->
+        <div id="quiz-screen" class="screen">
+          <div class="progress-container">
+            <div class="progress-text">
+              <span>PERGUNTA <span id="current-q-num">1</span> DE <span id="total-q-num">?</span></span>
+              <span id="progress-percent">0%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="progress-fill"></div>
+            </div>
+          </div>
+
+          <div class="question-card">
+            <h2 class="question-text" id="question-text">Preparando pergunta...</h2>
+            <div class="answers-grid" id="answers-grid">
+              <!-- Respostas injetadas pelo JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TELA 3: RESULTADO -->
+        <div id="result-screen" class="screen">
+          <div class="result-glow"></div>
+          <p class="result-title" id="result-subtitle">O resultado final...</p>
+          <h1 class="house-name" id="result-main-text">Calculando...</h1>
+
+          <div class="house-crest-placeholder" id="result-icon-container">
+            <!-- Ícone dinâmico -->
+          </div>
+
+          <p class="house-desc" id="result-desc">Avaliando suas respostas.</p>
+
+          <button id="btn-restart-quiz" class="btn btn-outline" style="background: var(--bg-card); z-index: 2;">
+            Fazer Novamente
+          </button>
+          <a href="/quiz/" class="btn btn-outline" style="background: var(--bg-card); z-index: 2;">
+            Voltar para a Lista de Quizzes
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+
+  <!-- Carrega a nova lógica dinâmica -->
+  <script type="module" src="/js/pages/quiz.js"></script>
+</body>
+
+</html>

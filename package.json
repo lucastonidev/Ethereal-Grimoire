@@ -1,0 +1,35 @@
+{
+  "name": "felix-felicis",
+  "version": "1.1.0",
+  "description": "Uma homenagem ao universo mágico de Harry Potter, criada para fãs explorarem casas, personagens e feitiços.",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon server.js",
+    "start": "node server.js",
+    "lint": "eslint src/ public/js/",
+    "lint:fix": "eslint src/ public/js/ --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucastonidev/Ethereal-Grimoire.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/lucastonidev/Ethereal-Grimoire/issues"
+  },
+  "homepage": "https://github.com/lucastonidev/Ethereal-Grimoire#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.10.0",
+    "globals": "^17.12.0"
+  }
+}

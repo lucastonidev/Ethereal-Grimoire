@@ -1,0 +1,76 @@
+/* ── TOKENS ── */
+:root {
+  --bg:               #09090f;
+  --bg-section:       #0d0e1a;
+  --bg-card:          #12131f;
+  --bg-card-hover:    #181928;
+  --border:           rgba(201,162,39,.15);
+  --border-subtle:    rgba(255,255,255,.06);
+  --text:             #f0eadc;
+  --text-muted:       #9b9490;
+  --text-faint:       #5a5760;
+  --gold:             #c9a227;
+  --gold-light:       #e8c84a;
+  --gold-dim:         rgba(201,162,39,.18);
+  --gryffindor-red:   #9b1c1c;
+  --gryffindor-gold:  #d4af37;
+  --slytherin-green:  #1a5c2e;
+  --slytherin-silver: #8c9c8e;
+  --ravenclaw-blue:   #1a3a8a;
+  --ravenclaw-bronze: #8b6914;
+  --hufflepuff-yellow:#e8b600;
+  --hufflepuff-black: #2b2b2b;
+  --font-display: 'Cinzel', Georgia, serif;
+  --font-body:    'Nunito', system-ui, sans-serif;
+  --text-xs:   clamp(.75rem,  .7rem  + .25vw, .875rem);
+  --text-sm:   clamp(.875rem, .8rem  + .35vw, 1rem);
+  --text-base: clamp(1rem,    .95rem + .25vw, 1.125rem);
+  --text-lg:   clamp(1.125rem,1rem   + .75vw, 1.5rem);
+  --text-xl:   clamp(1.5rem,  1.2rem + 1.25vw,2.25rem);
+  --text-2xl:  clamp(2rem,    1.2rem + 2.5vw, 3.5rem);
+  --text-3xl:  clamp(2.5rem,  1rem   + 4vw,   5rem);
+  --space-1:  .25rem;  --space-2:  .5rem;  --space-3:  .75rem;
+  --space-4:  1rem;    --space-5:  1.25rem;--space-6:  1.5rem;
+  --space-8:  2rem;    --space-10: 2.5rem; --space-12: 3rem;
+  --space-16: 4rem;    --space-20: 5rem;
+  --radius-sm: .375rem; --radius-md: .5rem;
+  --radius-lg: .75rem;  --radius-xl: 1rem;
+  --radius-full: 9999px;
+  --transition: 200ms cubic-bezier(.16,1,.3,1);
+  --content: 1100px;
+}
+
+/* ── BASE ── */
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+.container {
+  max-width: var(--content);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+/* ── ANIMAÇÕES GERAIS ── */
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-12px); }
+}
+.floating { animation: float 5s ease-in-out infinite; }
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+  .container { padding-inline: var(--space-4); }
+}

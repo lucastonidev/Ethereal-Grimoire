@@ -1,0 +1,201 @@
+/* ── ECRÃ NEGRO DE SENHA INICIAL ── */
+#spell-screen {
+  position: fixed;
+  inset: 0;
+  background-color: #050505;
+  z-index: 20000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 2s ease-in-out, visibility 2s;
+}
+
+#spell-screen.revealed {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#spell-input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #333;
+  color: #fff;
+  font-family: "Nothing You Could Do", cursive;
+  font-size: 32px;
+  text-align: center;
+  padding: 10px;
+  width: 80%;
+  max-width: 600px;
+  outline: none;
+  transition: border-color 0.5s, text-shadow 0.5s;
+}
+
+#spell-input:focus {
+  border-bottom: 2px solid #d4bda1;
+  text-shadow: 0 0 10px rgba(212, 189, 161, 0.5);
+}
+
+#spell-hint {
+  color: #555;
+  margin-top: 20px;
+  font-family: "IM Fell English SC", serif;
+  letter-spacing: 2px;
+}
+
+/* ── MODAL DO MAPA (PERGAMINHO) ── */
+#house-modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+#house-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-parchment {
+  background-color: #d4bda1;
+  background-image:
+    radial-gradient(circle at center, transparent 30%, rgba(62, 39, 35, 0.4) 110%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.12'/%3E%3C/svg%3E");
+  border: 4px solid #3e2723;
+  box-shadow: inset 0 0 40px rgba(62, 39, 35, 0.5), 0 10px 30px rgba(0, 0, 0, 0.8);
+  width: 90%;
+  max-width: 600px;
+  padding: 40px;
+  text-align: center;
+  position: relative;
+  border-radius: 5px;
+  transform: translateY(50px) scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#house-modal.active .modal-parchment {
+  transform: translateY(0) scale(1);
+}
+
+.modal-parchment p, 
+.modal-parchment strong, 
+.modal-parchment div {
+  color: #3e2723;
+}
+
+/* Botões do Pergaminho */
+.close-btn {
+  background: transparent;
+  border: 2px solid #3e2723;
+  color: #3e2723;
+  font-family: "IM Fell English SC", serif;
+  font-size: 24px;
+  padding: 10px 30px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 3px;
+}
+.close-btn:hover {
+  background: #3e2723;
+  color: #d4bda1;
+}
+
+/* ── INPUT DE SENHA DENTRO DO MODAL ── */
+.password-input {
+  background: rgba(62, 39, 35, 0.05);
+  border: none;
+  border-bottom: 2px dashed #3e2723;
+  color: #3e2723;
+  font-family: "Nothing You Could Do", cursive;
+  font-size: 28px;
+  text-align: center;
+  padding: 10px;
+  width: 80%;
+  max-width: 400px;
+  outline: none;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.password-input:focus {
+  border-bottom: 2px solid #3e2723;
+  background: rgba(62, 39, 35, 0.1);
+}
+
+.password-input::placeholder {
+  color: rgba(62, 39, 35, 0.4);
+}
+
+/* ── ESTILOS DINÂMICOS DO CONTEÚDO (Themes) ── */
+.fade-in-modal {
+  animation: revealMagic 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes revealMagic {
+  0% { opacity: 0; transform: scale(0.95) translateY(10px); filter: blur(4px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+}
+
+.modal-house-logo {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 15px auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(62, 39, 35, 0.4));
+  display: block;
+}
+
+.modal-title {
+  color: #3e2723;
+  font-family: "IM Fell English SC", serif;
+  font-size: 48px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  border-bottom: 2px dashed #3e2723;
+  padding-bottom: 10px;
+}
+
+.modal-traits {
+  font-family: "Nothing You Could Do", cursive;
+  font-size: 24px;
+  color: rgba(62, 39, 35, 0.8);
+  margin-bottom: 30px;
+}
+
+.modal-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  text-align: left;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+.modal-info-grid p { margin: 5px 0; }
+.modal-info-grid strong { font-size: 22px; display: block; margin-bottom: 2px; }
+
+/* Cores das Casas */
+.theme-gryffindor .modal-title { color: #9b1c1c; border-bottom-color: #9b1c1c; }
+.theme-gryffindor .modal-traits { color: #9b1c1c; }
+.theme-gryffindor .close-btn { color: #9b1c1c; border-color: #9b1c1c; }
+.theme-gryffindor .close-btn:hover { background: #9b1c1c; color: #d4bda1; }
+
+.theme-slytherin .modal-title { color: #1a5c2e; border-bottom-color: #1a5c2e; }
+.theme-slytherin .modal-traits { color: #1a5c2e; }
+.theme-slytherin .close-btn { color: #1a5c2e; border-color: #1a5c2e; }
+.theme-slytherin .close-btn:hover { background: #1a5c2e; color: #d4bda1; }
+
+.theme-ravenclaw .modal-title { color: #1a3a8a; border-bottom-color: #1a3a8a; }
+.theme-ravenclaw .modal-traits { color: #1a3a8a; }
+.theme-ravenclaw .close-btn { color: #1a3a8a; border-color: #1a3a8a; }
+.theme-ravenclaw .close-btn:hover { background: #1a3a8a; color: #d4bda1; }
+
+.theme-hufflepuff .modal-title { color: #b58500; border-bottom-color: #b58500; }
+.theme-hufflepuff .modal-traits { color: #b58500; }
+.theme-hufflepuff .close-btn { color: #b58500; border-color: #b58500; }
+.theme-hufflepuff .close-btn:hover { background: #b58500; color: #d4bda1; }

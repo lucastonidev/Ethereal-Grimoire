@@ -1,0 +1,30 @@
+/* ── COMPONENTE TOAST ── */
+.toast {
+  position: fixed;
+  bottom: var(--space-8);
+  right: var(--space-6);
+  background: rgba(18, 19, 31, 0.95);
+  backdrop-filter: blur(10px);
+  color: var(--text);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--gold);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  z-index: 9999;
+}
+
+/* Cores dinâmicas na borda lateral e no ícone com base no tipo */
+.toast--success { border-left-color: #4ade80; color: #4ade80; }
+.toast--error { border-left-color: #f87171; color: #f87171; }
+.toast--loading { border-left-color: #60a5fa; color: #60a5fa; }
+
+/* Mantém o texto principal branco */
+.toast span {
+  color: var(--text);
+  margin-left: 8px;
+}

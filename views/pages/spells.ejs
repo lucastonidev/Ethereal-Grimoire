@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <%- include("../partials/head.ejs", { title: title }) %>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/pages/spells.css" />
+</head>
+
+<body>
+  <%- include("../partials/header.ejs") %>
+
+  <main id="main-content">
+    <div class="page-header">
+      <div class="container">
+        <span class="section-label">O Grimório</span>
+        <h1 class="section-title">Encantamentos & <span>Maldições</span></h1>
+        <p class="section-desc">Consulte o acervo completo de feitiços conhecidos do mundo bruxo.</p>
+
+        <div class="search-container">
+          <input type="text" id="search-input" class="search-input" placeholder="Pesquisar feitiço por nome ou efeito..." aria-label="Pesquisar feitiços">
+          <i class="fas fa-search search-icon"></i>
+        </div>
+      </div>
+    </div>
+
+    <section id="spells-list" style="padding-top: 0;">
+      <div class="container">
+        <div class="spells-grid" id="spells-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('../partials/footer') %>
+
+  <script type="module" src="/js/pages/spells.js"></script>
+</body>
+
+</html>

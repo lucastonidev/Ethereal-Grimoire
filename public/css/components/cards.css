@@ -533,3 +533,24 @@
   line-height: 1.5;
   margin: 0;
 }
+
+@media (max-width: 900px) {
+  .spell-card {
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .spell-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .spell-card__title {
+    font-size: var(--text-sm);
+  }
+
+  .spell-type-badge {
+    font-size: 0.6rem;
+    padding: 3px 8px;
+  }
+}

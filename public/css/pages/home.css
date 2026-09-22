@@ -324,10 +324,13 @@
   color: var(--text);
   margin-bottom: var(--space-4);
   line-height: 1.1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-align: center;
 }
 
 .quiz-cta-title span {
   color: var(--gold);
+  text-shadow: 0 2px 6px rgba(201, 162, 39, 0.5);
 }
 
 .quiz-cta-text p {
@@ -336,6 +339,21 @@
   line-height: 1.6;
   margin-bottom: var(--space-6);
   max-width: 50ch;
+  text-align: justify;
+}
+
+.quiz-cta-text span{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.quiz-cta-actions{
+  width: 100%;
+}
+
+.quiz-cta-actions a{
+  width: 100%;
 }
 
 /* Runas ao fundo do card */

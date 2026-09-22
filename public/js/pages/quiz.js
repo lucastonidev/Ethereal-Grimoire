@@ -1,33 +1,24 @@
 import { Toast } from "../components/toast.js";
 import { App } from "../main.js";
+import { QuizProcessor } from "../core/QuizProcessor.js";
 
 class QuizApp {
   constructor() {
     this.quizId = document.getElementById("quiz-app").dataset.quizId;
     this.quizData = null;
+    this.processor = null; // Instância do motor de regras
     this.questions = [];
     this.currentQuestionIndex = 0;
     this.toast = new Toast();
 
-    // Para quizzes tipo 'sorting' ou 'personality' (acumulam pontos por categoria/casa)
     this.categoryScores = {};
-
-    // Para quizzes tipo 'trivia' ou 'owls' (certas vs erradas)
     this.correctAnswers = 0;
 
     this.init();
     new App()._setupMobileMenu();
   }
 
-  // Identificador automático do tipo de quiz baseado na estrutura do JSON
-  get isSortingQuiz() {
-    return (
-      Array.isArray(this.quizData?.results) && this.quizData.results.length > 0
-    );
-  }
-
   async init() {
-    // Configura botões de navegação
     document
       .getElementById("btn-start-quiz")
       .addEventListener("click", () => this.startQuiz());
@@ -40,16 +31,15 @@ class QuizApp {
         "Preparando desafio mágico...",
         "loading",
       );
-
       const response = await fetch(`/api/v1/quizzes/${this.quizId}`);
 
-      if (!response.ok) {
-        throw new Error("Falha ao buscar o quiz");
-      }
+      if (!response.ok) throw new Error("Falha ao buscar o quiz");
 
       this.quizData = await response.json();
 
-      // Embaralha todas as perguntas e pega apenas as 10 primeiras para a rodada
+      // Inicializa o motor que processa os dados brutos
+      this.processor = new QuizProcessor(this.quizData);
+
       const shuffledQuestions = [...this.quizData.questions].sort(
         () => Math.random() - 0.5,
       );
@@ -59,10 +49,7 @@ class QuizApp {
       this.populateStartScreen();
     } catch (error) {
       console.error(error);
-      this.toast.show(
-        "Erro ao carregar o quiz. Os trasgos devem ter mexido nos cabos.",
-        "error",
-      );
+      this.toast.show("Erro ao carregar o quiz.", "error");
       document.getElementById("quiz-start-desc").innerText =
         "Não foi possível carregar as perguntas.";
     }
@@ -87,11 +74,8 @@ class QuizApp {
     document.getElementById("total-q-num").innerText = this.questions.length;
     document.getElementById("btn-start-quiz").style.display = "inline-flex";
 
-    if (this.isSortingQuiz) {
-      this.quizData.results.forEach((result) => {
-        this.categoryScores[result.id] = 0;
-      });
-    }
+    // O processador entrega as pontuações iniciais já formatadas
+    this.categoryScores = this.processor.initializeScores();
   }
 
   startQuiz() {
@@ -103,7 +87,6 @@ class QuizApp {
   renderQuestion() {
     const q = this.questions[this.currentQuestionIndex];
 
-    // Atualiza Barra de Progresso
     document.getElementById("current-q-num").innerText =
       this.currentQuestionIndex + 1;
     const progress = (this.currentQuestionIndex / this.questions.length) * 100;
@@ -111,13 +94,11 @@ class QuizApp {
     document.getElementById("progress-percent").innerText =
       `${Math.round(progress)}%`;
 
-    // Atualiza Texto da Pergunta
     document.getElementById("question-text").innerText = q.question;
 
-    // Embaralha as opções de resposta
-    const shuffledAnswers = [...q.options].sort(() => Math.random() - 0.5);
+    const optionsArray = q.options || q.answers || q.choices || [];
+    const shuffledAnswers = [...optionsArray].sort(() => Math.random() - 0.5);
 
-    // Renderiza Botões
     const answersGrid = document.getElementById("answers-grid");
     answersGrid.innerHTML = "";
 
@@ -125,29 +106,40 @@ class QuizApp {
       const btn = document.createElement("button");
       btn.className = "answer-btn";
 
-      // Avalia se o item atual do array de opções é apenas o texto (String) ou um Objeto
       const isStringOption = typeof ans === "string";
       btn.innerText = isStringOption ? ans : ans.text;
 
       btn.addEventListener("click", () => {
-        if (!this.isSortingQuiz) {
-          // LÓGICA DE TRIVIA (Acertos vs Erros)
-          if (isStringOption && ans === q.correctAnswer) {
-            this.correctAnswers++;
-          } else if (!isStringOption && ans.isCorrect) {
+        if (!this.processor.isSortingQuiz) {
+          if (
+            (isStringOption && ans === q.correctAnswer) ||
+            (!isStringOption && ans.isCorrect)
+          ) {
             this.correctAnswers++;
           }
         } else {
-          // LÓGICA DE SELEÇÃO (Soma de pontos por categoria)
-          if (
-            !isStringOption &&
-            ans.value &&
-            this.categoryScores[ans.value] !== undefined
-          ) {
-            this.categoryScores[ans.value] += 1;
+          if (!isStringOption) {
+            if (ans.points && typeof ans.points === "object") {
+              for (const [key, pts] of Object.entries(ans.points)) {
+                this.categoryScores[key] =
+                  (this.categoryScores[key] || 0) + pts;
+              }
+            } else if (Array.isArray(ans.value)) {
+              ans.value.forEach((val) => {
+                this.categoryScores[val] = (this.categoryScores[val] || 0) + 1;
+              });
+            } else {
+              const val =
+                ans.value ||
+                ans.character ||
+                ans.resultId ||
+                ans.id ||
+                ans.house;
+              if (val)
+                this.categoryScores[val] = (this.categoryScores[val] || 0) + 1;
+            }
           }
         }
-
         this.advanceQuiz();
       });
 
@@ -157,7 +149,6 @@ class QuizApp {
 
   advanceQuiz() {
     this.currentQuestionIndex++;
-
     if (this.currentQuestionIndex < this.questions.length) {
       this.renderQuestion();
     } else {
@@ -175,75 +166,28 @@ class QuizApp {
     }, 500);
   }
 
+  // Olha como o showResult ficou elegante e legível!
   showResult() {
     const resultScreen = document.getElementById("result-screen");
 
-    if (this.isSortingQuiz) {
-      let winningCategory = null;
-      let maxScore = -1;
+    // Delega a avaliação dos pontos para a inteligência da classe QuizProcessor
+    const finalData = this.processor.getFinalResult(
+      this.categoryScores,
+      this.correctAnswers,
+      this.questions.length,
+    );
 
-      for (const cat in this.categoryScores) {
-        if (this.categoryScores[cat] > maxScore) {
-          maxScore = this.categoryScores[cat];
-          winningCategory = cat;
-        }
-      }
+    // Fica responsável APENAS por injetar os dados no HTML
+    document.getElementById("result-subtitle").innerText = finalData.subtitle;
+    document.getElementById("result-main-text").innerText = finalData.title;
+    document.getElementById("result-desc").innerText = finalData.description;
+    document.getElementById("result-icon-container").innerHTML =
+      finalData.iconHtml;
 
-      const resultData = this.quizData.results.find(
-        (r) => r.id === winningCategory,
-      );
-
-      document.getElementById("result-subtitle").innerText = "O resultado é...";
-      document.getElementById("result-main-text").innerText = resultData.title;
-      document.getElementById("result-desc").innerText = resultData.description;
-
-      if (resultData.image) {
-        document.getElementById("result-icon-container").innerHTML =
-          `<img src="${resultData.image}" style="width: 100%; height: 100%; object-fit: contain;">`;
-      } else {
-        document.getElementById("result-icon-container").innerHTML =
-          '<i class="fas fa-magic" style="font-size: 80px; color: var(--gold); line-height: 150px;"></i>';
-      }
-
-      if (resultData.colorClass) {
-        resultScreen.className = `screen active ${resultData.colorClass}`;
-      } else {
-        resultScreen.className = "screen active";
-        resultScreen.style.borderColor = "var(--gold)";
-      }
-    } else {
-      // É UM QUIZ DE TRIVIA
-      const total = this.questions.length;
-      const percentage = Math.round((this.correctAnswers / total) * 100);
-
-      let title;
-      let descriptionText;
-
-      if (percentage === 100) {
-        title = "Excepcional!";
-        descriptionText =
-          "Você acertou todas as perguntas. Hermione ficaria orgulhosa!";
-      } else if (percentage >= 70) {
-        title = "Muito Bom!";
-        descriptionText = `Você acertou ${this.correctAnswers} de ${total} perguntas. Um ótimo Excede Expectativas!`;
-      } else if (percentage >= 40) {
-        title = "Aceitável";
-        descriptionText = `Você acertou ${this.correctAnswers} de ${total}. Ainda há muito o que estudar na biblioteca.`;
-      } else {
-        title = "Trasgo!";
-        descriptionText = `Você acertou apenas ${this.correctAnswers} de ${total}. É melhor voltar para as aulas do Professor Binns.`;
-      }
-
-      document.getElementById("result-subtitle").innerText =
-        `Pontuação: ${percentage}%`;
-      document.getElementById("result-main-text").innerText = title;
-      document.getElementById("result-desc").innerText = descriptionText;
-      document.getElementById("result-icon-container").innerHTML =
-        '<i class="fas fa-scroll" style="font-size: 80px; color: var(--gold); line-height: 150px;"></i>';
-
-      resultScreen.className = "screen active";
-      resultScreen.style.borderColor = "var(--gold)";
-    }
+    resultScreen.className = finalData.colorClass
+      ? `screen active ${finalData.colorClass}`
+      : "screen active";
+    resultScreen.style.borderColor = "var(--gold)";
   }
 }
 

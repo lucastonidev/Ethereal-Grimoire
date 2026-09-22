@@ -8,8 +8,6 @@ main {
   margin-top: 4pc;
 }
 
-.quiz-app
-
 .quiz-bg {
   position: absolute;
   inset: 0;
@@ -278,4 +276,31 @@ main {
 }
 .result-hufflepuff .house-name {
   color: var(--hufflepuff-yellow);
+}
+
+#btn-restart-quiz {
+  margin-bottom: var(--space-4);
+}
+
+.character-portrait {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 16px;
+  border: 3px solid var(--gold);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(201, 162, 39, 0.25);
+}
+
+@media (max-width: 900px){
+  #question-text{
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    width: 100%;  
+  }
+
+  .question-card {
+    padding: var(--space-6) 0px var(--space-6) 0px;
+  }
 }

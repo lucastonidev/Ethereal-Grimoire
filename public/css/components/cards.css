@@ -436,7 +436,7 @@
 /* ── GRID DOS FEITIÇOS ── */
 .spells-grid {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: var(--space-4);
   margin-bottom: var(--space-8);
 }

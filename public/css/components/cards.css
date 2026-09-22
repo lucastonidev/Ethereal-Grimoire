@@ -195,7 +195,7 @@
 }
 
 /* ── AJUSTES MOBILE PARA OS CARDS ── */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .honor-card {
     /* Diminui o preenchimento para não ocupar a tela toda */
     padding: var(--space-6) var(--space-5) var(--space-5);
@@ -203,6 +203,10 @@
 
   .honor-header h3 {
     font-size: var(--text-xl); /* Título levemente menor */
+  }
+
+  .honor-desc{
+      max-width: 85%;
   }
 
   .honor-crest {
@@ -431,27 +435,20 @@
 
 /* ── GRID DOS FEITIÇOS ── */
 .spells-grid {
-  display: grid;
-  /* Mudamos de 280px para 450px para garantir que sejam horizontais e largos */
-  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--space-4);
   margin-bottom: var(--space-8);
-}
-
-@media (max-width: 768px) {
-  .spells-grid {
-    grid-template-columns: 1fr; /* 1 coluna no mobile */
-  }
 }
 
 /* ── NOVO LAYOUT DO CARD ── */
 .spell-card {
   background: var(--bg-card);
-  border-radius: var(--radius-md); /* Borda menos arredondada, mais moderna */
+  border-radius: var(--radius-md); 
   padding: var(--space-5) var(--space-6);
   border: 1px solid var(--border-subtle);
-  border-left: 4px solid var(--gold); /* Linha dourada na esquerda idêntica à imagem */
-  box-shadow: -2px 0 12px rgba(201, 162, 39, 0.05); /* Brilho sutil na esquerda */
+  border-left: 4px solid var(--gold);
+  box-shadow: -2px 0 12px rgba(201, 162, 39, 0.05);
   display: flex;
   flex-direction: column;
   text-decoration: none;

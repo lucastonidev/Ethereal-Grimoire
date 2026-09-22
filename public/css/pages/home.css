@@ -1,13 +1,18 @@
 /* ── HERO ── */
 #home {
   position: relative;
+  width: 100%;
   min-height: 100dvh;
   display: flex;
   align-items: center;
   overflow: hidden;
   padding-block: var(--space-20);
+  padding-top: calc(var(--space-20) + 20px);
 }
+
 .hero-bg {
+  width: 100%;
+  height: 100%;
   position: absolute;
   inset: 0;
   opacity: 0.3;
@@ -26,12 +31,14 @@
     url("https://images.unsplash.com/photo-1598153346810-860daa814c4b?q=80&w=1920&auto=format&fit=crop")
       center/cover no-repeat;
 }
+
 .hero-particles {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
 }
+
 .particle {
   position: absolute;
   width: 3px;
@@ -92,8 +99,13 @@
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 780px;
+  max-width: 1800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 .hero-eyebrow {
   display: inline-block;
   font-family: var(--font-display);
@@ -104,6 +116,7 @@
   margin-bottom: var(--space-4);
   opacity: 0.85;
 }
+
 .hero-title {
   font-family: var(--font-display);
   font-size: var(--text-3xl);
@@ -111,6 +124,7 @@
   color: var(--text);
   margin-bottom: var(--space-6);
 }
+
 .hero-brand {
   display: block;
   color: transparent;
@@ -225,19 +239,29 @@
   border-radius: var(--radius-xl);
   padding: var(--space-12) var(--space-8);
   overflow: hidden;
-  box-shadow: inset 0 0 60px rgba(0,0,0,0.5), 0 20px 40px rgba(0,0,0,0.4);
-  transition: border-color var(--transition), box-shadow var(--transition);
+  box-shadow:
+    inset 0 0 60px rgba(0, 0, 0, 0.5),
+    0 20px 40px rgba(0, 0, 0, 0.4);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
 }
 
 .quiz-cta-card:hover {
   border-color: rgba(201, 162, 39, 0.4);
-  box-shadow: inset 0 0 80px rgba(201,162,39,0.05), 0 25px 50px rgba(0,0,0,0.6);
+  box-shadow:
+    inset 0 0 80px rgba(201, 162, 39, 0.05),
+    0 25px 50px rgba(0, 0, 0, 0.6);
 }
 
 .quiz-cta-glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 10% 50%, rgba(201, 162, 39, 0.15) 0%, transparent 60%);
+  background: radial-gradient(
+    circle at 10% 50%,
+    rgba(201, 162, 39, 0.15) 0%,
+    transparent 60%
+  );
   pointer-events: none;
   z-index: 0;
 }
@@ -264,13 +288,18 @@
   justify-content: center;
   font-size: 3rem;
   color: var(--gold);
-  box-shadow: 0 0 30px rgba(201,162,39,0.1);
+  box-shadow: 0 0 30px rgba(201, 162, 39, 0.1);
   animation: float-icon 6s ease-in-out infinite;
 }
 
 @keyframes float-icon {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .quiz-cta-text {
@@ -283,7 +312,7 @@
 .quiz-cta-eyebrow {
   font-family: var(--font-display);
   font-size: var(--text-xs);
-  letter-spacing: .2em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--text-muted);
   margin-bottom: var(--space-3);
@@ -332,15 +361,15 @@
     text-align: center;
     gap: var(--space-6);
   }
-  
+
   .quiz-cta-text {
     align-items: center;
   }
-  
+
   .quiz-cta-title {
     font-size: var(--text-2xl);
   }
-  
+
   .quiz-runes-bg {
     font-size: 4rem;
     right: 50%;
@@ -360,18 +389,27 @@
     flex-direction: column;
     align-items: flex-start;
   }
-  .houses-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+  
   .spells-grid {
     grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 480px) {
-  .houses-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 900px) {
+  .hero-content {
+    text-align: center;
+    padding-inline: var(--space-2);
   }
+
+  .hero-actions{
+    width: 100%;
+  }
+
+  .hero-actions a {
+    width: 100%;
+    justify-content: center;
+  }
+
   .quiz-coming-soon {
     padding: var(--space-10) var(--space-5);
   }

@@ -62,6 +62,23 @@ class ApiClient {
     }
     return quiz;
   }
+
+  async getAllHouses(lang = this.language) {
+    const response = await fetch(`${this.baseUrl}/${lang}/houses.${lang}.json`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  }
+
+  async getHouseById(id, lang = this.language) {
+    const houses = await this.getAllHouses(lang);
+    const house = houses["houses"].find((house) => house.id === id);
+    if (!house) {
+      throw new Error(`House with ID ${id} not found.`);
+    }
+    return house;
+  }
 }
 
 export const apiClient = new ApiClient();

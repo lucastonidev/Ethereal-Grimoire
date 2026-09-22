@@ -1,5 +1,11 @@
 /* ── RESET ── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 html {
   -webkit-text-size-adjust: none;
@@ -16,14 +22,52 @@ body {
   line-height: 1.6;
 }
 
-img, picture, video, canvas, svg { display: block; max-width: 100%; height: auto; }
-ul[role="list"], ol[role="list"] { list-style: none; }
-input, button, textarea, select { font: inherit; color: inherit; }
-h1, h2, h3, h4, h5, h6 { text-wrap: balance; line-height: 1.2; }
-p, li, figcaption { text-wrap: pretty; }
-button { cursor: pointer; background: none; border: none; }
-table { border-collapse: collapse; width: 100%; }
-a { text-decoration: none; }
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+  line-height: 1.2;
+}
+p,
+li,
+figcaption {
+  text-wrap: pretty;
+}
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+a {
+  text-decoration: none;
+}
 
 ::selection {
   background: rgba(201, 162, 39, 0.3);
@@ -37,12 +81,21 @@ a { text-decoration: none; }
 }
 
 .sr-only {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

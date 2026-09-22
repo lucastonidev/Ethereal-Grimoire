@@ -16,6 +16,7 @@ class App {
     this._renderSkeletons();
     this.fetchMainCharacters();
     this.fetchSpells();
+    this.fetchHouses();
   }
 
   _setupNavScroll() {
@@ -103,33 +104,6 @@ class App {
     if (container) this.ui.renderSkeletons(container, 4);
   }
 
-  async fetchMainCharacters() {
-    const container = document.getElementById("main-character");
-    if (!container) return;
-
-    try {
-      // Busca os dados na sua nova API
-      const allData = await fetch(`${this.baseUrl}characters`).then((res) => {
-        if (!res.ok) throw new Error(res.status);
-        return res.json();
-      });
-
-      this.ui.clearSkeletons(container);
-
-      const charactersToDisplay = allData.slice(0, 3);
-
-      charactersToDisplay.forEach((data) => this.ui.mainCharacters(data));
-      slidebarCharacter();
-    } catch (err) {
-      console.error("Erro ao buscar personagens:", err);
-      this.ui.clearSkeletons(container);
-      container.innerHTML = `
-        <div style="padding:var(--space-8);color:var(--text-muted);text-align:center;width:100%">
-          <p>Não foi possível carregar os personagens no momento.</p>
-        </div>`;
-    }
-  }
-
   renderSpells(data) {
     const container = document.getElementById("spells-grid");
     if (!container) return;
@@ -162,6 +136,33 @@ class App {
     });
   }
 
+  async fetchMainCharacters() {
+    const container = document.getElementById("main-character");
+    if (!container) return;
+
+    try {
+      // Busca os dados na sua nova API
+      const allData = await fetch(`${this.baseUrl}characters`).then((res) => {
+        if (!res.ok) throw new Error(res.status);
+        return res.json();
+      });
+
+      this.ui.clearSkeletons(container);
+
+      const charactersToDisplay = allData.slice(0, 3);
+
+      charactersToDisplay.forEach((data) => this.ui.mainCharacters(data));
+      slidebarCharacter();
+    } catch (err) {
+      console.error("Erro ao buscar personagens:", err);
+      this.ui.clearSkeletons(container);
+      container.innerHTML = `
+        <div style="padding:var(--space-8);color:var(--text-muted);text-align:center;width:100%">
+          <p>Não foi possível carregar os personagens no momento.</p>
+        </div>`;
+    }
+  }
+
   async fetchSpells() {
     const container = document.getElementById("spells-grid");
     if (!container) return;
@@ -172,8 +173,6 @@ class App {
       const data = await res.json();
 
       const topSpells = data.slice(0, 5);
-      console.log(topSpells);
-      
       container.innerHTML = "";
 
       this.renderSpells(topSpells);
@@ -182,6 +181,25 @@ class App {
       container.innerHTML = `
         <div style="padding:var(--space-8);color:var(--text-muted);text-align:center;grid-column:1/-1">
           <p>Não foi possível carregar os feitiços no momento.</p>
+        </div>`;
+    }
+  }
+
+  async fetchHouses() {
+    const container = document.getElementById("houses-grid");
+    if (!container) return;
+
+    try {
+      const res = await fetch(`${this.baseUrl}houses`);
+      if (!res.ok) throw new Error(res.status);
+      const data = await res.json();
+      container.innerHTML = "";
+      data.forEach((house) => this.ui.renderHouse(house));
+    } catch (err) {
+      console.error("Erro ao buscar casas:", err);
+      container.innerHTML = `
+        <div style="padding:var(--space-8);color:var(--text-muted);text-align:center;grid-column:1/-1">
+          <p>Não foi possível carregar as casas no momento.</p>
         </div>`;
     }
   }

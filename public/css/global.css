@@ -71,6 +71,6 @@ body {
   transform: translateY(0);
 }
 
-@media (max-width: 480px) {
-  .container { padding-inline: var(--space-4); }
+@media (max-width: 900px) {
+  .container { padding: 0; }
 }

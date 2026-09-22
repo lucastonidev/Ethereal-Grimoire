@@ -50,6 +50,35 @@ class UI {
     }
   }
 
+  renderHouse(house) {
+    const container = document.getElementById("houses-grid");
+    if (!container) return;
+
+    const card = document.createElement("article");
+
+    card.className = `honor-card ${this._getHouseClass(house.house)}`;
+    card.innerHTML = `
+      <div class="honor-glow" aria-hidden="true"></div>
+      <div class="honor-crest">
+        <img
+          src="${house.image}"
+          alt="Brasão da ${house.house}"
+          loading="lazy"
+        />
+      </div>
+      <div class="honor-content">
+        <div class="honor-header">
+          <h3>${house.house}</h3>
+          <span class="honor-element" title="Elemento: ${house.element}">
+            <i class="fas fa-${this._getHouseElementorIcon(house.house)}"></i>
+          </span>
+        </div>
+        <p class="honor-desc">${house.description}</p>
+      </div>
+    `;
+    container.appendChild(card);
+  }
+
   clearSkeletons(container) {
     if (!container) return;
     container.querySelectorAll(".skeleton").forEach((sk) => sk.remove());
@@ -63,6 +92,17 @@ class UI {
     if (h.includes("slytherin") || h.includes("sonserina")) return "slytherin";
     if (h.includes("ravenclaw") || h.includes("corvinal")) return "ravenclaw";
     if (h.includes("hufflepuff") || h.includes("lufa")) return "hufflepuff";
+    return "unknown";
+  }
+
+  _getHouseElementorIcon(house) {
+    if (!house) return "unknown";
+    const h = house.toLowerCase();
+    if (h.includes("gryffindor") || h.includes("grifinória"))
+      return "fire";
+    if (h.includes("slytherin") || h.includes("sonserina")) return "tint";
+    if (h.includes("ravenclaw") || h.includes("corvinal")) return "wind";
+    if (h.includes("hufflepuff") || h.includes("lufa")) return "leaf";
     return "unknown";
   }
 }
